@@ -8,10 +8,10 @@ namespace CreaterTest
 {
     public class QuestionList
     {
-        public string formulirovkaQuestion { get; set; };
+        public string formulirovkaQuestion { get; set; }
 
         public string typeQuestion { get; set; }
 
-        public List<AnswerQuestions> AnswerQuestions;
+        public List<AnswerQuestions> AnswerQuestions { get; set; }
     }
 }

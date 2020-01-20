@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Newtonsoft.Json;
 
 namespace CreaterTest
 {
@@ -25,6 +27,7 @@ namespace CreaterTest
         }
         public List<string> StatusList = new List<string> { "Один вариант", "Несколько вариантов", "Соответствие", "Закрытый вопрос", "Последовательность" };
 
+        public object JsonSerializer { get; private set; }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -119,6 +122,54 @@ namespace CreaterTest
         private void BtnOK_Click(object sender, RoutedEventArgs e)
         {
             gridSetting.Visibility = Visibility.Collapsed;
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            //AnswerQuestions anq = new AnswerQuestions();
+            //QuestionList qlist = new QuestionList();
+            //if(tbquestion1.Text != "")
+            //{
+            //    anq.formulirovka = tbquestion1.Text;
+            //    anq.valueAnswer = tbquestion1.Text;
+            //    qlist.AnswerQuestions.Add(anq);
+            //}
+            //if (tbquestion2.Text != "")
+            //{
+            //    anq.formulirovka = tbquestion2.Text;
+            //    anq.valueAnswer = tbquestion2.Text;
+            //    qlist.AnswerQuestions.Add(anq);
+            //}
+            //if (tbquestion3.Text != "")
+            //{
+            //    anq.formulirovka = tbquestion3.Text;
+            //    anq.valueAnswer = tbquestion3.Text;
+            //    qlist.AnswerQuestions.Add(anq);
+            //}
+            //if (tbquestion4.Text != "")
+            //{
+
+            //}
+            //if (tbquestion5.Text != "")
+            //{
+
+            //}
+            //if (tbquestion6.Text != "")
+            //{
+
+            //}
+            //qlist.formulirovkaQuestion = tbFormulirovka.Text;
+            //qlist.typeQuestion = "help";
+            //using (StreamWriter writer = File.CreateText(@"C:\Users\vlado\Desktop"))
+            //{
+            //    string outjs = JsonConvert.SerializeObject(qlist);
+            //    writer.Write(outjs);
+            //}
+        }
+
+        private void NotQuestion(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
