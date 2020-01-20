@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:CreaterTest"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="AddRedTest" Height="450" Width="800" Closing="Window_Closing" Loaded="Window_Loaded">
-    <Grid>
+        Title="AddRedTest" Height="450" Width="800" Closing="Window_Closing" Loaded="Window_Loaded" WindowStyle="None">
+    <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.5*"></ColumnDefinition>
             <ColumnDefinition Width="1.2*"></ColumnDefinition>
@@ -29,152 +29,180 @@
         <Button Margin="5" Grid.Column="5" x:Name="btnGoHome" BorderBrush="{x:Null}" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Grid.Row="0" Click="btnGoHome_Click">
             <materialDesign:PackIcon Kind="Home"  Background="{x:Null}"/>
         </Button>
+        <Button Margin="5" Grid.Column="4" x:Name="btnGoSetting" BorderBrush="{x:Null}" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Grid.Row="0" Click="BtnGoSetting_Click">
+            <materialDesign:PackIcon Kind="Settings"  Background="{x:Null}"/>
+        </Button>
+        <Button Margin="5" Grid.Column="6" x:Name="btnGoPower" BorderBrush="{x:Null}" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Grid.Row="0" Click="BtnGoPower_Click">
+            <materialDesign:PackIcon Kind="Power"  Background="{x:Null}"/>
+        </Button>
         <DataGrid Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="5" Background="#FF190303"></DataGrid>
         <Label Grid.Column="0"  Grid.ColumnSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Foreground="Black">Список вопросов</Label>
-        <TextBox Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="4" Background="AliceBlue" Text="Введите формулировку вопроса." />
-        <ComboBox x:Name="cbTypeQuestion" Grid.Column="6" Grid.Row="1" Margin="10" Background="White" Foreground="Black" SelectionChanged="ComboBox_SelectionChanged" ItemsSource="{Binding StatusList}">
-            
+        <TextBox x:Name="tbFormulirovka" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="4" Background="AliceBlue" Text="Введите формулировку вопроса." />
+        <ComboBox x:Name="cbTypeQuestion" Grid.Column="6" Grid.Row="1" Margin="10" Background="White" Foreground="Black" SelectionChanged="ComboBox_SelectionChanged">
         </ComboBox>
-        <StackPanel x:Name="panelOneVar" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="5" Grid.RowSpan="4" Background="White" Visibility="Collapsed" >
-            <Grid Height="241">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.1*"></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-                <RadioButton Margin="0, 10, 0, 0" Visibility="Visible" Grid.Row="1" Foreground="Black" Background="Black"></RadioButton>
-                <RadioButton Margin="0, 10, 0, 0" Visibility="Visible" Foreground="Black" Background="Black" IsChecked="True"></RadioButton>
-                <RadioButton Margin="0, 10, 0, 0" Visibility="Visible" Grid.Row="2" Foreground="Black" Background="Black"></RadioButton>
-                <RadioButton Margin="0, 10, 0, 0" Visibility="Visible" Grid.Row="3" Foreground="Black" Background="Black"></RadioButton>
-                <RadioButton Margin="0, 10, 0, 0" Visibility="Visible" Grid.Row="4" Foreground="Black" Background="Black"></RadioButton>
-                <RadioButton Margin="0, 10, 0, 0" Visibility="Visible" Grid.Row="5" Foreground="Black" Background="Black"></RadioButton>
-                <ScrollViewer Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3">
-                    <TextBox FontSize="14"  TextWrapping="Wrap" AcceptsReturn="True" Margin="10, 0, 10, 2"/>
-                </ScrollViewer>
-                <ScrollViewer Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3">
+
+        <Grid x:Name="gridOneVar" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="5" Grid.RowSpan="4" Background="White" Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <RadioButton Margin="0, 10, 0, 0" Visibility="Visible" Grid.Row="1" Foreground="Black" Background="Black"></RadioButton>
+            <RadioButton Margin="0, 10, 0, 0" Visibility="Visible" Foreground="Black" Background="Black" IsChecked="True"></RadioButton>
+            <RadioButton Margin="0, 10, 0, 0" Visibility="Visible" Grid.Row="2" Foreground="Black" Background="Black"></RadioButton>
+            <RadioButton Margin="0, 10, 0, 0" Visibility="Visible" Grid.Row="3" Foreground="Black" Background="Black"></RadioButton>
+            <RadioButton Margin="0, 10, 0, 0" Visibility="Visible" Grid.Row="4" Foreground="Black" Background="Black"></RadioButton>
+            <RadioButton Margin="0, 10, 0, 0" Visibility="Visible" Grid.Row="5" Foreground="Black" Background="Black"></RadioButton>
+            <ScrollViewer Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3">
                 <TextBox FontSize="14"  TextWrapping="Wrap" AcceptsReturn="True" Margin="10, 0, 10, 2"/>
-                </ScrollViewer>
-                <ScrollViewer Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3">
-                    <TextBox FontSize="14"  TextWrapping="Wrap" AcceptsReturn="True" Margin="10, 0, 10, 2"/>
-                </ScrollViewer>
-                <ScrollViewer Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3">
-                    <TextBox FontSize="14"  TextWrapping="Wrap" AcceptsReturn="True" Margin="10, 0, 10, 2"/>
-                </ScrollViewer>
-                <ScrollViewer Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3">
-                    <TextBox FontSize="14"  TextWrapping="Wrap" AcceptsReturn="True" Margin="10, 0, 10, 2"/>
-                </ScrollViewer>
-                <ScrollViewer Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3">
-                    <TextBox FontSize="14"  TextWrapping="Wrap" AcceptsReturn="True" Margin="10, 0, 10, 2"/>
-                </ScrollViewer>
-            </Grid>
-        </StackPanel>
-        <StackPanel x:Name="panelLotVar" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="5" Grid.RowSpan="4" Background="White" Visibility="Collapsed" >
-            <Grid Height="241">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.1*"></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-                <CheckBox Margin="0, 10, 0, 0" Visibility="Visible" Grid.Row="1" Foreground="Black" Background="Black"></CheckBox>
-                <CheckBox Margin="0, 10, 0, 0" Visibility="Visible" Foreground="Black" Background="Black" IsChecked="True"></CheckBox>
-                <CheckBox Margin="0, 10, 0, 0" Visibility="Visible" Grid.Row="2" Foreground="Black" Background="Black"></CheckBox>
-                <CheckBox Margin="0, 10, 0, 0" Visibility="Visible" Grid.Row="3" Foreground="Black" Background="Black"></CheckBox>
-                <CheckBox Margin="0, 10, 0, 0" Visibility="Visible" Grid.Row="4" Foreground="Black" Background="Black"></CheckBox>
-                <CheckBox Margin="0, 10, 0, 0" Visibility="Visible" Grid.Row="5" Foreground="Black" Background="Black"></CheckBox>
-                <ScrollViewer Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3">
-                    <TextBox FontSize="14"  TextWrapping="Wrap" AcceptsReturn="True" Margin="10, 0, 10, 2"/>
-                </ScrollViewer>
-                <ScrollViewer Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3">
-                    <TextBox FontSize="14"  TextWrapping="Wrap" AcceptsReturn="True" Margin="10, 0, 10, 2"/>
-                </ScrollViewer>
-                <ScrollViewer Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3">
-                    <TextBox FontSize="14"  TextWrapping="Wrap" AcceptsReturn="True" Margin="10, 0, 10, 2"/>
-                </ScrollViewer>
-                <ScrollViewer Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3">
-                    <TextBox FontSize="14"  TextWrapping="Wrap" AcceptsReturn="True" Margin="10, 0, 10, 2"/>
-                </ScrollViewer>
-                <ScrollViewer Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3">
-                    <TextBox FontSize="14"  TextWrapping="Wrap" AcceptsReturn="True" Margin="10, 0, 10, 2"/>
-                </ScrollViewer>
-                <ScrollViewer Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3">
-                    <TextBox FontSize="14"  TextWrapping="Wrap" AcceptsReturn="True" Margin="10, 0, 10, 2"/>
-                </ScrollViewer>
-            </Grid>
-        </StackPanel>
+            </ScrollViewer>
+            <ScrollViewer Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3">
+                <TextBox FontSize="14"  TextWrapping="Wrap" AcceptsReturn="True" Margin="10, 0, 10, 2"/>
+            </ScrollViewer>
+            <ScrollViewer Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3">
+                <TextBox FontSize="14"  TextWrapping="Wrap" AcceptsReturn="True" Margin="10, 0, 10, 2"/>
+            </ScrollViewer>
+            <ScrollViewer Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3">
+                <TextBox FontSize="14"  TextWrapping="Wrap" AcceptsReturn="True" Margin="10, 0, 10, 2"/>
+            </ScrollViewer>
+            <ScrollViewer Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3">
+                <TextBox FontSize="14"  TextWrapping="Wrap" AcceptsReturn="True" Margin="10, 0, 10, 2"/>
+            </ScrollViewer>
+            <ScrollViewer Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3">
+                <TextBox FontSize="14"  TextWrapping="Wrap" AcceptsReturn="True" Margin="10, 0, 10, 2"/>
+            </ScrollViewer>
+        </Grid>
+
+        <Grid Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="5" Grid.RowSpan="4" x:Name="grLotQuestion" Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <CheckBox Margin="0, 10, 0, 0" Visibility="Visible" Grid.Row="1" Foreground="Black" Background="Black"></CheckBox>
+            <CheckBox Margin="0, 10, 0, 0" Visibility="Visible" Foreground="Black" Background="Black" IsChecked="True"></CheckBox>
+            <CheckBox Margin="0, 10, 0, 0" Visibility="Visible" Grid.Row="2" Foreground="Black" Background="Black"></CheckBox>
+            <CheckBox Margin="0, 10, 0, 0" Visibility="Visible" Grid.Row="3" Foreground="Black" Background="Black"></CheckBox>
+            <CheckBox Margin="0, 10, 0, 0" Visibility="Visible" Grid.Row="4" Foreground="Black" Background="Black"></CheckBox>
+            <CheckBox Margin="0, 10, 0, 0" Visibility="Visible" Grid.Row="5" Foreground="Black" Background="Black"></CheckBox>
+            <ScrollViewer Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3">
+                <TextBox FontSize="14"  TextWrapping="Wrap" AcceptsReturn="True" Margin="10, 0, 10, 2"/>
+            </ScrollViewer>
+            <ScrollViewer Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3">
+                <TextBox FontSize="14"  TextWrapping="Wrap" AcceptsReturn="True" Margin="10, 0, 10, 2"/>
+            </ScrollViewer>
+            <ScrollViewer Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3">
+                <TextBox FontSize="14"  TextWrapping="Wrap" AcceptsReturn="True" Margin="10, 0, 10, 2"/>
+            </ScrollViewer>
+            <ScrollViewer Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3">
+                <TextBox FontSize="14"  TextWrapping="Wrap" AcceptsReturn="True" Margin="10, 0, 10, 2"/>
+            </ScrollViewer>
+            <ScrollViewer Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3">
+                <TextBox FontSize="14"  TextWrapping="Wrap" AcceptsReturn="True" Margin="10, 0, 10, 2"/>
+            </ScrollViewer>
+            <ScrollViewer Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3">
+                <TextBox FontSize="14"  TextWrapping="Wrap" AcceptsReturn="True" Margin="10, 0, 10, 2"/>
+            </ScrollViewer>
+        </Grid>
+
         <ScrollViewer VerticalScrollBarVisibility="Visible" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="5" Grid.RowSpan="4">
-        <StackPanel x:Name="panelCloseQuestion" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="5" Grid.RowSpan="4" Background="White" Visibility="Collapsed" >
+            <Grid x:Name="gridCloseQuestion" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="5" Grid.RowSpan="4" Background="White" Visibility="Collapsed" >
                 <Button Grid.Column="1" Click="Button_Click">ZDAROVA</Button>
-            </StackPanel>
-        </ScrollViewer>
-        <StackPanel x:Name="panelSootv" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="5" Grid.RowSpan="4" Background="White" Visibility="Collapsed" >
-            <Grid Height="241">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition Width="0.2*"></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                    </Grid.RowDefinitions>
-                <TextBox Grid.Row="1" Grid.Column="0" Margin="0, 0, 0, 2"></TextBox>
-                <TextBox Grid.Row="0" Grid.Column="0" Margin="0, 0, 0, 2"></TextBox>
-                <TextBox Grid.Row="2" Grid.Column="0" Margin="0, 0, 0, 2"></TextBox>
-                <TextBox Grid.Row="3" Grid.Column="0" Margin="0, 0, 0, 2"></TextBox>
-                <TextBox Grid.Row="4" Grid.Column="0" Margin="0, 0, 0, 2"></TextBox>
-                <TextBox Grid.Row="5" Grid.Column="0" Margin="0, 0, 0, 2"></TextBox>
-                <TextBox Grid.Row="1" Grid.Column="2" Margin="0, 0, 0, 2"></TextBox>
-                <TextBox Grid.Row="2" Grid.Column="2" Margin="0, 0, 0, 2"></TextBox>
-                <TextBox Grid.Row="0" Grid.Column="2" Margin="0, 0, 0, 2"></TextBox>
-                <TextBox Grid.Row="3" Grid.Column="2" Margin="0, 0, 0, 2"></TextBox>
-                <TextBox Grid.Row="5" Grid.Column="2" Margin="0, 0, 0, 2"></TextBox>
-                <TextBox Grid.Row="4" Grid.Column="2" Margin="0, 0, 0, 2"></TextBox>
-                </Grid>
-        </StackPanel>
-        <StackPanel x:Name="panelSledovanie" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="5" Grid.RowSpan="4" Background="White" Visibility="Collapsed">
-            <Grid Height="241">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.2*"></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-                <TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"></TextBox>
-                <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"></TextBox>
-                <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"></TextBox>
-                <TextBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"></TextBox>
-                <TextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"></TextBox>
-                <TextBox Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2"></TextBox>
             </Grid>
-        </StackPanel>
+        </ScrollViewer>
+
+        <Grid x:Name="gridSootv" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="5" Grid.RowSpan="4" Background="White" Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="0.2*"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBox Grid.Row="1" Grid.Column="0" Margin="0, 0, 0, 2"></TextBox>
+            <TextBox Grid.Row="0" Grid.Column="0" Margin="0, 0, 0, 2"></TextBox>
+            <TextBox Grid.Row="2" Grid.Column="0" Margin="0, 0, 0, 2"></TextBox>
+            <TextBox Grid.Row="3" Grid.Column="0" Margin="0, 0, 0, 2"></TextBox>
+            <TextBox Grid.Row="4" Grid.Column="0" Margin="0, 0, 0, 2"></TextBox>
+            <TextBox Grid.Row="5" Grid.Column="0" Margin="0, 0, 0, 2"></TextBox>
+            <TextBox Grid.Row="1" Grid.Column="2" Margin="0, 0, 0, 2"></TextBox>
+            <TextBox Grid.Row="2" Grid.Column="2" Margin="0, 0, 0, 2"></TextBox>
+            <TextBox Grid.Row="0" Grid.Column="2" Margin="0, 0, 0, 2"></TextBox>
+            <TextBox Grid.Row="3" Grid.Column="2" Margin="0, 0, 0, 2"></TextBox>
+            <TextBox Grid.Row="5" Grid.Column="2" Margin="0, 0, 0, 2"></TextBox>
+            <TextBox Grid.Row="4" Grid.Column="2" Margin="0, 0, 0, 2"></TextBox>
+        </Grid>
+
+        <Grid x:Name="gridSledovanie" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="5" Grid.RowSpan="4" Background="White" Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.2*"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"></TextBox>
+            <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"></TextBox>
+            <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"></TextBox>
+            <TextBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"></TextBox>
+            <TextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"></TextBox>
+            <TextBox Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2"></TextBox>
+        </Grid>
+        <Grid Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="5" Grid.RowSpan="5" Visibility="Collapsed" x:Name="gridSetting" Margin="0,8,0,38">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.7*"></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="0.2*"></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="0.3*"></RowDefinition>
+                <RowDefinition ></RowDefinition>
+                <RowDefinition Height="1.4*"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="1.4*"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <CheckBox x:Name="cbRandomQuestion" Grid.Row="1" Grid.Column="1" Foreground="Black" FontSize="16">Случайный порядок вопросов</CheckBox>
+            <CheckBox x:Name="cbTimeLimit" Grid.Row="3" Grid.Column="1" Foreground="Black" FontSize="16">Ограничение по времени</CheckBox>
+            <TextBox Grid.Row="5" Grid.Column="1" Background="AliceBlue" Foreground="Black" FontSize="16" HorizontalContentAlignment="Center" Visibility="Visible" VerticalContentAlignment="Center">Введите кол-во минут</TextBox>
+            <Button x:Name="btnOK" Grid.Column="0" Grid.Row="6" BorderBrush="{x:Null}" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Click="BtnOK_Click">
+                <materialDesign:PackIcon Kind="Close" Height="30" Width="18"></materialDesign:PackIcon>
+            </Button>
+            <Button x:Name="btnClosegrid" Grid.Column="2" Grid.Row="6" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" BorderBrush="{x:Null}" Click="BtnClosegrid_Click">
+                <materialDesign:PackIcon Kind="Check" Background="{x:Null}"></materialDesign:PackIcon>
+            </Button>
+        </Grid>
     </Grid>
 </Window>

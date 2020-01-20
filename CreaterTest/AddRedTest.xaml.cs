@@ -23,7 +23,7 @@ namespace CreaterTest
         {
             InitializeComponent();
         }
-        public List<string> StatusList = new List<string> { "Active", "Inactive" };
+        public List<string> StatusList = new List<string> { "Один вариант", "Несколько вариантов", "Соответствие", "Закрытый вопрос", "Последовательность" };
 
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -42,83 +42,83 @@ namespace CreaterTest
             TextBox txt = new TextBox();
             txt.Width = 150;
             text.Width = 150;
-            panelCloseQuestion.Children.Add(txt);
-            panelCloseQuestion.Children.Add(text);
+            gridCloseQuestion.Children.Add(txt);
+            gridCloseQuestion.Children.Add(text);
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (cbTypeQuestion.Text == "Соответствие")
+            
+            tbFormulirovka.Text = "qq";
+            if (cbTypeQuestion.SelectedItem.ToString() == "Соответствие")
             {
                 collapsedallpanel();
-                panelSootv.Visibility = Visibility.Visible;
+                gridSootv.Visibility = Visibility.Visible;
             }
-            else if (cbTypeQuestion.Text == "Закрытый вопрос")
+            else if (cbTypeQuestion.SelectedItem.ToString() == "Закрытый вопрос")
             {
                 collapsedallpanel();
-                panelCloseQuestion.Visibility = Visibility.Visible;
+                gridCloseQuestion.Visibility = Visibility.Visible;
 
             }
-            else if (cbTypeQuestion.Text == "Последовательность")
+            else if (cbTypeQuestion.SelectedItem.ToString() == "Последовательность")
             {
                 collapsedallpanel();
-                panelSledovanie.Visibility = Visibility.Visible;
+                gridSledovanie.Visibility = Visibility.Visible;
 
             }
-            else if (cbTypeQuestion.Text == "Один вариант")
+            else if (cbTypeQuestion.SelectedItem.ToString() == "Один вариант")
             {
                 collapsedallpanel();
-                panelOneVar.Visibility = Visibility.Visible;
+                gridOneVar.Visibility = Visibility.Visible;
             }
-            else if (cbTypeQuestion.Text == "Несколько вариантов")
+            else if (cbTypeQuestion.SelectedItem.ToString() == "Несколько вариантов")
             {
                 collapsedallpanel();
-                panelLotVar.Visibility = Visibility.Visible;
+                grLotQuestion.Visibility = Visibility.Visible;
             }
         }
         private void collapsedallpanel()
         {
-            panelCloseQuestion.Visibility = Visibility.Collapsed;
-            panelLotVar.Visibility = Visibility.Collapsed;
-            panelOneVar.Visibility = Visibility.Collapsed;
-            panelSledovanie.Visibility = Visibility.Collapsed;
-            panelSootv.Visibility = Visibility.Collapsed;
+            gridCloseQuestion.Visibility = Visibility.Collapsed;
+            grLotQuestion.Visibility = Visibility.Collapsed;
+            gridOneVar.Visibility = Visibility.Collapsed;
+            gridSledovanie.Visibility = Visibility.Collapsed;
+            gridSootv.Visibility = Visibility.Collapsed;
         }
 
         private void btnGoHome_Click(object sender, RoutedEventArgs e)
         {
-            if (cbTypeQuestion.Text == "Соответствие")
-            {
-                collapsedallpanel();
-                panelSootv.Visibility = Visibility.Visible;
-            }
-            else if (cbTypeQuestion.Text == "Закрытый вопрос")
-            {
-                collapsedallpanel();
-                panelCloseQuestion.Visibility = Visibility.Visible;
+            MainWindow mw = new MainWindow();
+            mw.Show();
+            this.Hide();
 
-            }
-            else if (cbTypeQuestion.Text == "Последовательность")
-            {
-                collapsedallpanel();
-                panelSledovanie.Visibility = Visibility.Visible;
-
-            }
-            else if (cbTypeQuestion.Text == "Один вариант")
-            {
-                collapsedallpanel();
-                panelOneVar.Visibility = Visibility.Visible;
-            }
-            else if (cbTypeQuestion.Text == "Несколько вариантов")
-            {
-                collapsedallpanel();
-                panelLotVar.Visibility = Visibility.Visible;
-            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            cbTypeQuestion.ItemsSource = StatusList;
+           
+        }
+
+        private void BtnGoPower_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void BtnGoSetting_Click(object sender, RoutedEventArgs e)
+        {
+            gridSetting.Visibility = Visibility.Visible;
+        }
+
+        private void BtnClosegrid_Click(object sender, RoutedEventArgs e)
+        {
             
+        }
+
+        private void BtnOK_Click(object sender, RoutedEventArgs e)
+        {
+            gridSetting.Visibility = Visibility.Collapsed;
         }
     }
 }

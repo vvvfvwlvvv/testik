@@ -63,6 +63,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AnswerQuestions.cs" />
+    <Compile Include="QuestionList.cs" />
+    <Compile Include="Test.cs" />
     <Page Include="AddRedTest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
