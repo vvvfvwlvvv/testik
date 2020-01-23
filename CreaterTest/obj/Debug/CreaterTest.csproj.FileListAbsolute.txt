@@ -72,3 +72,5 @@ C:\Users\vlado\Desktop\q\CreaterTest\CreaterTest\obj\Debug\CreaterTest.csproj.Co
 C:\Users\vlado\Desktop\q\CreaterTest\CreaterTest\obj\Debug\CreaterTest.csproj.CopyComplete
 C:\Users\vlado\Desktop\q\CreaterTest\CreaterTest\bin\Debug\Newtonsoft.Json.dll
 C:\Users\vlado\Desktop\q\CreaterTest\CreaterTest\bin\Debug\Newtonsoft.Json.xml
+C:\Users\User\Desktop\q\testik\CreaterTest\bin\Debug\Newtonsoft.Json.dll
+C:\Users\User\Desktop\q\testik\CreaterTest\bin\Debug\Newtonsoft.Json.xml

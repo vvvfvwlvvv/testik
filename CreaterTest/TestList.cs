@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace CreaterTest
 {
-    public class AnswerQuestions
+    public class TestList
     {
-        public string option { get; set; }
-        
-        public string value { get; set; }
-            
+        public List<Test> testsq { get; set; }
     }
 }

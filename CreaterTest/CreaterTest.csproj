@@ -69,6 +69,7 @@
     <Compile Include="AnswerQuestions.cs" />
     <Compile Include="QuestionList.cs" />
     <Compile Include="Test.cs" />
+    <Compile Include="TestList.cs" />
     <Page Include="AddRedTest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

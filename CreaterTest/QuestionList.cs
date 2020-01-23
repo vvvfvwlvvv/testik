@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace CreaterTest
 {
-    public class QuestionList
+    public class Question
     {
-        public string formulirovkaQuestion { get; set; }
+        public int questionList { get; set; }
+        public string quest { get; set; }
 
         public string typeQuestion { get; set; }
 
-        public List<AnswerQuestions> AnswerQuestions { get; set; }
+        public List<AnswerQuestions> optionQuestions { get; set; }
     }
 }

@@ -26,7 +26,13 @@ namespace CreaterTest
             InitializeComponent();
         }
         public List<string> StatusList = new List<string> { "Один вариант", "Несколько вариантов", "Соответствие", "Закрытый вопрос", "Последовательность" };
-
+        List<AnswerQuestions> es = new List<AnswerQuestions>();
+        List<Question> qlists = new List<Question>();
+        List<TestList> testsq = new List<TestList>();
+        List<Test> testsqq = new List<Test>();
+        public string indexTMP = "";
+        int index = 0;
+        string js = File.ReadAllText(@"C:\Users\User\Desktop\q\qqq.json");
         public object JsonSerializer { get; private set; }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -51,8 +57,6 @@ namespace CreaterTest
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
-            tbFormulirovka.Text = "qq";
             if (cbTypeQuestion.SelectedItem.ToString() == "Соответствие")
             {
                 collapsedallpanel();
@@ -100,8 +104,20 @@ namespace CreaterTest
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            TestList outjs = JsonConvert.DeserializeObject<TestList>(js);
+            tbFormulirovka.Text = indexTMP;
             cbTypeQuestion.ItemsSource = StatusList;
-           
+            if (indexTMP != "")
+            {
+                var gh = outjs.testsq.FirstOrDefault(nameRed => nameRed.name == indexTMP).questions;
+                
+                dgView.ItemsSource = gh.Select(spisok => new { spisok.quest, spisok.typeQuestion }).ToList();
+            }
+            else
+            {
+
+            }
+
         }
 
         private void BtnGoPower_Click(object sender, RoutedEventArgs e)
@@ -116,7 +132,7 @@ namespace CreaterTest
 
         private void BtnClosegrid_Click(object sender, RoutedEventArgs e)
         {
-            
+
         }
 
         private void BtnOK_Click(object sender, RoutedEventArgs e)
@@ -126,48 +142,308 @@ namespace CreaterTest
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            //AnswerQuestions anq = new AnswerQuestions();
-            //QuestionList qlist = new QuestionList();
-            //if(tbquestion1.Text != "")
-            //{
-            //    anq.formulirovka = tbquestion1.Text;
-            //    anq.valueAnswer = tbquestion1.Text;
-            //    qlist.AnswerQuestions.Add(anq);
-            //}
-            //if (tbquestion2.Text != "")
-            //{
-            //    anq.formulirovka = tbquestion2.Text;
-            //    anq.valueAnswer = tbquestion2.Text;
-            //    qlist.AnswerQuestions.Add(anq);
-            //}
-            //if (tbquestion3.Text != "")
-            //{
-            //    anq.formulirovka = tbquestion3.Text;
-            //    anq.valueAnswer = tbquestion3.Text;
-            //    qlist.AnswerQuestions.Add(anq);
-            //}
-            //if (tbquestion4.Text != "")
-            //{
+             
+            if(cbTypeQuestion.SelectedItem.ToString() == "Последовательность")
+            {
+                if (tbConstStr1.Text != "")
+                {
+                    es.Add(new AnswerQuestions()
+                    {
+                        option = tbConstStr1.Text,
+                        value = tblStr1.Text
+                    });
+                }
+                if (tbConstStr2.Text != "")
+                {
+                    es.Add(new AnswerQuestions()
+                    {
+                        option = tbConstStr2.Text,
+                        value = tblStr2.Text
+                    });
+                }
+                if (tbConstStr3.Text != "")
+                {
+                    es.Add(new AnswerQuestions()
+                    {
+                        option = tbConstStr3.Text,
+                        value = tblStr3.Text
+                    });
+                }
+                if (tbConstStr4.Text != "")
+                {
+                    es.Add(new AnswerQuestions()
+                    {
+                        option = tbConstStr4.Text,
+                        value = tblStr4.Text
+                    });
+                }
+                if (tbConstStr5.Text != "")
+                {
+                    es.Add(new AnswerQuestions()
+                    {
+                        option = tbConstStr5.Text,
+                        value = tblStr5.Text
+                    });
+                }
+                if (tbConstStr6.Text != "")
+                {
+                    es.Add(new AnswerQuestions()
+                    {
+                        option = tbConstStr6.Text,
+                        value = tblStr6.Text
+                    });
+                }
+            }
+            else if (cbTypeQuestion.SelectedItem.ToString() == "Несколько вариантов")
+            {
+                if (tbConstStr1.Text != "")
+                {
+                    es.Add(new AnswerQuestions()
+                    {
+                        option = tbConstStr1.Text,
+                        value = chbStr1.IsChecked.ToString()
+                    });
+                }
+                if (tbConstStr1.Text != "")
+                {
+                    es.Add(new AnswerQuestions()
+                    {
+                        option = tbConstStr2.Text,
+                        value = chbStr2.IsChecked.ToString()
+                    });
+                }
+                if (tbConstStr3.Text != "")
+                {
+                    es.Add(new AnswerQuestions()
+                    {
+                        option = tbConstStr3.Text,
+                        value = chbStr3.IsChecked.ToString()
+                    });
+                }
+                if (tbConstStr4.Text != "")
+                {
+                    es.Add(new AnswerQuestions()
+                    {
+                        option = tbConstStr4.Text,
+                        value = chbStr4.IsChecked.ToString()
+                    });
+                }
+                if (tbConstStr5.Text != "")
+                {
+                    es.Add(new AnswerQuestions()
+                    {
+                        option = tbConstStr5.Text,
+                        value = chbStr5.IsChecked.ToString()
+                    });
+                }
+                if (tbConstStr6.Text != "")
+                {
+                    es.Add(new AnswerQuestions()
+                    {
+                        option = tbConstStr6.Text,
+                        value = chbStr6.IsChecked.ToString()
+                    });
+                }
+            }
+            else if (cbTypeQuestion.SelectedItem.ToString() == "Один вариант")
+            {
+                if (tbConstStr1.Text != "")
+                {
+                    
+                    es.Add(new AnswerQuestions()
+                    {
+                        option = tbConstStr1.Text,
+                        value = rbStr1.IsChecked.ToString()
+                    });
+                }
+                if (tbConstStr2.Text != "")
+                {
+                    es.Add(new AnswerQuestions()
+                    {
+                        option = tbConstStr2.Text,
+                        value = rbStr2.IsChecked.ToString()
+                    });
+                }
+                if (tbConstStr3.Text != "")
+                {
+                    es.Add(new AnswerQuestions()
+                    {
+                        option = tbConstStr3.Text,
+                        value = rbStr3.IsChecked.ToString()
+                    });
+                }
+                if (tbConstStr4.Text != "")
+                {
+                    es.Add(new AnswerQuestions()
+                    {
+                        option = tbConstStr4.Text,
+                        value = rbStr4.IsChecked.ToString()
+                    });
+                }
+                if (tbConstStr5.Text != "")
+                {
+                    es.Add(new AnswerQuestions()
+                    {
+                        option = tbConstStr5.Text,
+                        value = rbStr5.IsChecked.ToString()
+                    });
+                }
+                if (tbConstStr6.Text != "")
+                {
+                    es.Add(new AnswerQuestions()
+                    {
+                        option = tbConstStr6.Text,
+                        value = rbStr6.IsChecked.ToString()
+                    });
+                }
+            }
+            else if (cbTypeQuestion.SelectedItem.ToString() == "Закрытый вопрос")
+            {
+                if (tbConstStr1.Text != "" && tbStr1.Text != "")
+                {
+                    es.Add(new AnswerQuestions()
+                    {
+                        option = tbConstStr1.Text,
+                        value = tbStr1.Text
+                    });
+                }
+                if (tbConstStr2.Text != "" && tbStr2.Text != "")
+                {
+                    es.Add(new AnswerQuestions()
+                    {
+                        option = tbConstStr2.Text,
+                        value = tbStr2.Text
+                    });
+                }
+                if (tbConstStr3.Text != "" && tbStr3.Text != "")
+                {
+                    es.Add(new AnswerQuestions()
+                    {
+                        option = tbConstStr3.Text,
+                        value = tbStr3.Text
+                    });
+                }
+                if (tbConstStr4.Text != "" && tbStr4.Text != "")
+                {
+                    es.Add(new AnswerQuestions()
+                    {
+                        option = tbConstStr4.Text,
+                        value = tbStr4.Text
+                    });
+                }
+                if (tbConstStr5.Text != "" && tbStr5.Text != "")
+                {
+                    es.Add(new AnswerQuestions()
+                    {
+                        option = tbConstStr5.Text,
+                        value = tblStr5.Text
+                    });
+                }
+                if (tbConstStr6.Text != "" && tbStr6.Text != "")
+                {
+                    es.Add(new AnswerQuestions()
+                    {
+                        option = tbConstStr6.Text,
+                        value = tbStr6.Text
+                    });
+                }
+            }
+            else if (cbTypeQuestion.Text == "Соответствие")
+            {
+                if (tbConstStr1.Text != "" && tbStrSootv1.Text != "")
+                {
+                    es.Add(new AnswerQuestions()
+                    {
+                        option = tbConstStr1.Text,
+                        value = tbStrSootv1.Text
+                    });
+                }
+                if (tbConstStr2.Text != "" && tbStrSootv2.Text != "")
+                {
+                    es.Add(new AnswerQuestions()
+                    {
+                        option = tbConstStr2.Text,
+                        value = tbStrSootv2.Text
+                    });
+                }
+                if (tbConstStr3.Text != "" && tbStrSootv3.Text != "")
+                {
+                    es.Add(new AnswerQuestions()
+                    {
+                        option = tbConstStr3.Text,
+                        value = tbStrSootv3.Text
+                    });
+                }
+                if (tbConstStr4.Text != "" && tbStrSootv4.Text != "")
+                {
+                    es.Add(new AnswerQuestions()
+                    {
+                        option = tbConstStr4.Text,
+                        value = tbStrSootv4.Text
+                    });
+                }
+                if (tbConstStr5.Text != "" && tbStrSootv5.Text != "")
+                {
+                    es.Add(new AnswerQuestions()
+                    {
+                        option = tbConstStr5.Text,
+                        value = tbStrSootv5.Text
+                    });
+                }
+                if (tbConstStr6.Text != "" && tbStrSootv6.Text != "")
+                {
+                    es.Add(new AnswerQuestions()
+                    {
+                        option = tbConstStr6.Text,
+                        value = tbStrSootv6.Text
+                    });
+                }
+            }
 
-            //}
-            //if (tbquestion5.Text != "")
-            //{
-
-            //}
-            //if (tbquestion6.Text != "")
-            //{
-
-            //}
-            //qlist.formulirovkaQuestion = tbFormulirovka.Text;
-            //qlist.typeQuestion = "help";
-            //using (StreamWriter writer = File.CreateText(@"C:\Users\vlado\Desktop"))
-            //{
-            //    string outjs = JsonConvert.SerializeObject(qlist);
-            //    writer.Write(outjs);
-            //}
+            qlists.Add(new Question()
+            {
+                quest = tbFormulirovka.Text,
+                typeQuestion = cbTypeQuestion.Text,
+                optionQuestions = es
+            });
+            index = 0;
+            dgView.ItemsSource = qlists.Select(spisokVoprosov =>new {k=index++, spisokVoprosov.quest }).ToList();
+            
         }
 
         private void NotQuestion(object sender, RoutedEventArgs e)
+        {
+            string timelimits;
+            if (cbTimeLimit.IsChecked == true)
+                timelimits = cbTimeLimit.IsChecked.ToString();
+            else timelimits = null;
+
+            object testinput = new
+            {
+                testsq = testsqq
+            };
+
+            testsqq.Add(new Test()
+            {
+                name = "QqqqqQ",
+                randomOrder = cbRandomQuestion.IsChecked.Value,
+                timeLimit = timelimits,
+                questions = qlists
+            });
+
+            testsq.Add(new TestList(){
+                testsq = testsqq 
+            });
+
+            using (StreamWriter writer = File.CreateText(@"C:\Users\User\Desktop\q\qqq.json"))
+            {
+                string outjs = JsonConvert.SerializeObject(testinput);
+                writer.Write(outjs);
+
+            }
+        }
+
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
