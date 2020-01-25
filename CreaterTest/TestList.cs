@@ -8,6 +8,6 @@ namespace CreaterTest
 {
     public class TestList
     {
-        public List<Test> testsq { get; set; }
+        public IList<Test> testsq { get; set; }
     }
 }

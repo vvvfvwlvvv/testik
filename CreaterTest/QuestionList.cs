@@ -8,11 +8,12 @@ namespace CreaterTest
 {
     public class Question
     {
-        public int questionList { get; set; }
+        public int idQuestion { get; set; }
         public string quest { get; set; }
 
-        public string typeQuestion { get; set; }
+        public int typeQuestion { get; set; }
 
-        public List<AnswerQuestions> optionQuestions { get; set; }
+        public IList<OptionQuestions> optionQuestions { get; set; }
+        
     }
 }

@@ -9,12 +9,15 @@ namespace CreaterTest
     public class Test
     {
         public int idTest { get; set; }
+
         public string name { get; set; }
 
-        public bool randomOrder { get; set; }
+        public bool randomOrderTest { get; set; }
+
+        public bool randomOrderQuest { get; set; }
 
         public string timeLimit { get; set; }
 
-        public List<Question> questions { get; set; }
+        public IList<Question> questions { get; set; }
     }
 }

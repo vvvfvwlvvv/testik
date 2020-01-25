@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace CreaterTest
 {
-    public class AnswerQuestions
+    public class OptionQuestions
     {
+        public int idOption { get; set; } 
+
         public string option { get; set; }
         
         public string value { get; set; }
