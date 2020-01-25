@@ -2,16 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using Newtonsoft.Json;
 using System.Net.Sockets;
 using System.Net;
@@ -504,40 +496,46 @@ namespace CreaterTest
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Test outjs = JsonConvert.DeserializeObject<Test>(js);
-            tbFormulirovka.Text = outjs.questions[dgView.SelectedIndex].quest;
-            var listik = outjs.questions[dgView.SelectedIndex].optionQuestions.ToList();
-            int listcount = listik.Count();
-
-            switch (listcount)
+            try
             {
-                case 1:
-                    tbConstStr1.Text = listik[0].option;
-                    break;
-                case 2:
-                    tbConstStr1.Text = listik[0].option;
-                    tbConstStr2.Text = listik[1].option;
-                    break;
-                case 3:
-                    tbConstStr1.Text = listik[0].option;
-                    tbConstStr2.Text = listik[1].option;
-                    tbConstStr3.Text = listik[2].option;
-                    break;
-                case 4:
-                    tbConstStr1.Text = listik[0].option;
-                    tbConstStr2.Text = listik[1].option;
-                    tbConstStr3.Text = listik[2].option;
-                    tbConstStr4.Text = listik[3].option;
-                    break;
-                case 5:
-                    tbConstStr1.Text = listik[0].option;
-                    tbConstStr2.Text = listik[1].option;
-                    tbConstStr3.Text = listik[2].option;
-                    tbConstStr4.Text = listik[3].option;
-                    tbConstStr5.Text = listik[4].option;
-                    break;
-            }
+                Test outjs = JsonConvert.DeserializeObject<Test>(js);
+                tbFormulirovka.Text = outjs.questions[dgView.SelectedIndex].quest;
+                var listik = outjs.questions[dgView.SelectedIndex].optionQuestions.ToList();
+                int listcount = listik.Count();
 
+                switch (listcount)
+                {
+                    case 1:
+                        tbConstStr1.Text = listik[0].option;
+                        break;
+                    case 2:
+                        tbConstStr1.Text = listik[0].option;
+                        tbConstStr2.Text = listik[1].option;
+                        break;
+                    case 3:
+                        tbConstStr1.Text = listik[0].option;
+                        tbConstStr2.Text = listik[1].option;
+                        tbConstStr3.Text = listik[2].option;
+                        break;
+                    case 4:
+                        tbConstStr1.Text = listik[0].option;
+                        tbConstStr2.Text = listik[1].option;
+                        tbConstStr3.Text = listik[2].option;
+                        tbConstStr4.Text = listik[3].option;
+                        break;
+                    case 5:
+                        tbConstStr1.Text = listik[0].option;
+                        tbConstStr2.Text = listik[1].option;
+                        tbConstStr3.Text = listik[2].option;
+                        tbConstStr4.Text = listik[3].option;
+                        tbConstStr5.Text = listik[4].option;
+                        break;
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Ошибка, данный вопрос не существует", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
        
