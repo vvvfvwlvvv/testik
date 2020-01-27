@@ -27,13 +27,14 @@ namespace CreaterTest
             InitializeComponent();
         }
         
-        string js = File.ReadAllText(@"C:\Users\User\Desktop\q\qqq.json");
+        string js = File.ReadAllText(@"C:\Users\vlado\Desktop\q\CreaterTest\qqq.json");
         public int tempID;
         private void ListViewItem_Selected(object sender, RoutedEventArgs e)
         {
             AddRedTest adred = new AddRedTest();
             this.Hide();
             adred.ShowDialog();
+            this.Show();
         }
 
         private void ListViewItem_Selected_1(object sender, RoutedEventArgs e)
