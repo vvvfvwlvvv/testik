@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using Newtonsoft.Json;
 using System.Net.Sockets;
 using System.Net;
+using System.Windows.Media;
 
 namespace CreaterTest
 {
@@ -20,7 +21,7 @@ namespace CreaterTest
             InitializeComponent();
         }
        
-        public List<string> StatusList = new List<string> { "Один вариант", "Несколько вариантов", "Соответствие", "Закрытый вопрос", "Последовательность" };
+        public List<string> StatusList = new List<string> { "Один вариант", "Несколько вариантов", "Соответствие", "Последовательность", "Закрытый вопрос"  };
         public string move; // Определяем с каким действием вошел пользователь
         
         List<Question> qlists = new List<Question>();
@@ -36,16 +37,6 @@ namespace CreaterTest
         string js = File.ReadAllText(@"C:\Users\User\Desktop\q\qqq.json");
         public object JsonSerializer { get; private set; }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            TextBox text = new TextBox();
-            TextBox txt = new TextBox();
-            txt.Width = 150;
-            text.Width = 150;
-            gridCloseQuestion.Children.Add(txt);
-            gridCloseQuestion.Children.Add(text);
-        }
-
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cbTypeQuestion.SelectedItem.ToString() == "Соответствие")
@@ -56,8 +47,7 @@ namespace CreaterTest
             else if (cbTypeQuestion.SelectedItem.ToString() == "Закрытый вопрос")
             {
                 collapsedallpanel();
-                gridCloseQuestion.Visibility = Visibility.Visible;
-
+                gridSootv.Visibility = Visibility.Visible;
             }
             else if (cbTypeQuestion.SelectedItem.ToString() == "Последовательность")
             {
@@ -78,11 +68,11 @@ namespace CreaterTest
         }
         private void collapsedallpanel()
         {
-            gridCloseQuestion.Visibility = Visibility.Collapsed;
             grLotQuestion.Visibility = Visibility.Collapsed;
             gridOneVar.Visibility = Visibility.Collapsed;
             gridSledovanie.Visibility = Visibility.Collapsed;
             gridSootv.Visibility = Visibility.Collapsed;
+            gridSetting.Visibility = Visibility.Collapsed;
         }
 
         private void btnGoHome_Click(object sender, RoutedEventArgs e)
@@ -95,14 +85,10 @@ namespace CreaterTest
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             cbTypeQuestion.ItemsSource = StatusList;
-            try
-            {
+            if (move == "Редактирование")
+            { 
                 Test outjs = JsonConvert.DeserializeObject<Test>(js);
-                dgView.ItemsSource = outjs.questions.Select(n =>new {n.idQuestion, s = n.quest }).ToList();
-            }
-            catch
-            {
-                MessageBox.Show("Error", "Error", MessageBoxButton.OK);
+                dgView.ItemsSource = outjs.questions.Select(n => new { n.idQuestion, s = n.quest }).ToList();
             }
         }
 
@@ -302,64 +288,7 @@ namespace CreaterTest
                     });
                 }
             }
-            else if (cbTypeQuestion.SelectedItem.ToString() == "Закрытый вопрос")
-            {
-                if (tbConstStr1.Text != "" && tbStr1.Text != "")
-                {
-                    es.Add(new OptionQuestions()
-                    {
-                        idOption = idOption++,
-                        option = tbConstStr1.Text,
-                        value = tbStr1.Text
-                    });
-                }
-                if (tbConstStr2.Text != "" && tbStr2.Text != "")
-                {
-                    es.Add(new OptionQuestions()
-                    {
-                        idOption = idOption++,
-                        option = tbConstStr2.Text,
-                        value = tbStr2.Text
-                    });
-                }
-                if (tbConstStr3.Text != "" && tbStr3.Text != "")
-                {
-                    es.Add(new OptionQuestions()
-                    {
-                        idOption = idOption++,
-                        option = tbConstStr3.Text,
-                        value = tbStr3.Text
-                    });
-                }
-                if (tbConstStr4.Text != "" && tbStr4.Text != "")
-                {
-                    es.Add(new OptionQuestions()
-                    {
-                        idOption = idOption++,
-                        option = tbConstStr4.Text,
-                        value = tbStr4.Text
-                    });
-                }
-                if (tbConstStr5.Text != "" && tbStr5.Text != "")
-                {
-                    es.Add(new OptionQuestions()
-                    {
-                        idOption = idOption++,
-                        option = tbConstStr5.Text,
-                        value = tblStr5.Text
-                    });
-                }
-                if (tbConstStr6.Text != "" && tbStr6.Text != "")
-                {
-                    es.Add(new OptionQuestions()
-                    {
-                        idOption = idOption++,
-                        option = tbConstStr6.Text,
-                        value = tbStr6.Text
-                    });
-                }
-            }
-            else if (cbTypeQuestion.Text == "Соответствие")
+            else if (cbTypeQuestion.SelectedItem.ToString() == "Закрытый вопрос" || cbTypeQuestion.SelectedItem.ToString() == "Соответствие")
             {
                 if (tbConstStr1.Text != "" && tbStrSootv1.Text != "")
                 {
@@ -403,7 +332,7 @@ namespace CreaterTest
                     {
                         idOption = idOption++,
                         option = tbConstStr5.Text,
-                        value = tbStrSootv5.Text
+                        value = tblStr5.Text
                     });
                 }
                 if (tbConstStr6.Text != "" && tbStrSootv6.Text != "")
@@ -416,11 +345,32 @@ namespace CreaterTest
                     });
                 }
             }
+
+            int typeVopr = 0;
+            switch(cbTypeQuestion.SelectedItem.ToString())
+            {
+                case "Один вариант":
+                    typeVopr = 1;
+                    break;
+                case "Несколько вариантов":
+                    typeVopr = 2;
+                    break;
+                case "Соответствие":
+                    typeVopr = 3;
+                    break;
+                case "Последовательность":
+                    typeVopr = 4;
+                    break;
+                case "Закрытый вопрос":
+                    typeVopr = 5;
+                    break;
+            }
+
             qlists.Add(new Question()
             {
                 idQuestion = idQuestion++,
                 quest = tbFormulirovka.Text,
-                typeQuestion = cbTypeQuestion.SelectedIndex,
+                typeQuestion = typeVopr,
                 optionQuestions = es
             });
 
@@ -701,13 +651,100 @@ namespace CreaterTest
                             break;
                     }
                 }
-            }
+
+                cbTypeQuestion.SelectedIndex = outjs.questions[dgView.SelectedIndex].typeQuestion - 1;            }
             catch
             {
 
             }
         }
 
-       
+        private void tbnameTest_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            
+        }
+
+        private void tbnameTest_FocusableChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            
+        }
+
+        private void tbnameTest_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (tbnameTest.Text == "Введите наименование теста")
+            {
+                tbnameTest.Foreground = new SolidColorBrush(Colors.Black);
+                tbnameTest.Text = "";
+            }
+        }
+
+        private void tbnameTest_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if(tbnameTest.Text == "")
+            {
+                tbnameTest.Foreground = new SolidColorBrush(Colors.Gray);
+                tbnameTest.Text = "Введите наименование теста";
+            }
+        }
+
+        private void tbFormulirovka_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (tbFormulirovka.Text == "Введите формулировку вопроса")
+            {
+                tbFormulirovka.Foreground = new SolidColorBrush(Colors.Black);
+                tbFormulirovka.Text = "";
+            }
+        }
+
+        private void tbFormulirovka_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (tbFormulirovka.Text == "")
+            {
+                tbFormulirovka.Foreground = new SolidColorBrush(Colors.Gray);
+                tbFormulirovka.Text = "Введите формулировку вопроса";
+            }
+        }
+
+        private void cbTimeLimit_Checked(object sender, RoutedEventArgs e)
+        {
+                tbTimeLimit.Visibility = Visibility.Visible;   
+        }
+
+        private void tbTimeLimit_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if(tbTimeLimit.Text == "Введите кол-во минут")
+            {
+                tbTimeLimit.Foreground = new SolidColorBrush(Colors.Black);
+                tbTimeLimit.Text = "";
+            }
+        }
+
+        private void tbTimeLimit_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (tbTimeLimit.Text == "")
+            {
+                tbTimeLimit.Foreground = new SolidColorBrush(Colors.Gray);
+                tbTimeLimit.Text = "Введите кол-во минут";
+            }
+        }
+
+        private void tbTimeLimit_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            
+        }
+
+        private void tbTimeLimit_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            if (!Char.IsDigit(e.Text, 0)) e.Handled = true;
+            if(tbTimeLimit.Text.Length > 2)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void cbTimeLimit_Unchecked(object sender, RoutedEventArgs e)
+        {
+            tbTimeLimit.Visibility = Visibility.Hidden;
+        }
     }
 }

@@ -34,6 +34,7 @@ namespace CreaterTest
             AddRedTest adred = new AddRedTest();
             this.Hide();
             adred.ShowDialog();
+            this.Show();
         }
 
         private void ListViewItem_Selected_1(object sender, RoutedEventArgs e)

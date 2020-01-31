@@ -35,11 +35,13 @@
         <Button Margin="5" Grid.Column="6" x:Name="btnGoPower" BorderBrush="{x:Null}" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Grid.Row="0" Click="BtnGoPower_Click">
             <materialDesign:PackIcon Kind="Power"  Background="{x:Null}"/>
         </Button>
-        <DataGrid Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="5" Foreground="White" Background="Black" BorderBrush="Black" SelectionChanged="DataGrid_SelectionChanged" x:Name="dgView"></DataGrid>
-        <TextBox Grid.Column="0" x:Name="tbnameTest"  Grid.ColumnSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Foreground="Black" AcceptsReturn="True" TextWrapping="Wrap">Введите наименование теста</TextBox>
-        <TextBox x:Name="tbFormulirovka" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="4" Background="AliceBlue" Text="Введите формулировку вопроса." />
-        <ComboBox x:Name="cbTypeQuestion" Grid.Column="6" Grid.Row="1" Margin="10" Background="White" Foreground="Black" SelectionChanged="ComboBox_SelectionChanged">
+        <DataGrid BorderBrush="Black" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="5" Foreground="Black" Background="White" SelectionChanged="DataGrid_SelectionChanged" x:Name="dgView"></DataGrid>
+        <TextBox Margin="10, 0, 10, 0" Grid.Column="0" x:Name="tbnameTest" VerticalAlignment="Bottom"  Grid.ColumnSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Foreground="Gray" AcceptsReturn="True" TextWrapping="Wrap" TextChanged="tbnameTest_TextChanged" GotFocus="tbnameTest_GotFocus" LostFocus="tbnameTest_LostFocus">Введите наименование теста</TextBox>
+        <TextBox x:Name="tbFormulirovka" Margin="10, 0, 10, 0" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="4" Background="White" BorderBrush="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="Gray" FontSize="18" Text="Введите формулировку вопроса" GotFocus="tbFormulirovka_GotFocus" LostFocus="tbFormulirovka_LostFocus" />
+        <ComboBox x:Name="cbTypeQuestion" Grid.Column="6" Grid.Row="1" Margin="10, 0, 10, 0" Background="White" Foreground="Black" VerticalAlignment="Bottom" SelectionChanged="ComboBox_SelectionChanged">
         </ComboBox>
+
+        <!--ОДИН ВАРИАНТ ОТВЕТА-->
 
         <Grid x:Name="gridOneVar" Grid.Column="3" Grid.Row="2" Grid.RowSpan="4" Background="White" Visibility="Collapsed">
             <Grid.RowDefinitions>
@@ -50,13 +52,15 @@
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-            <RadioButton HorizontalAlignment="Right" Visibility="Visible" Foreground="Black" Background="Black" x:Name="rbStr1" IsChecked="True"></RadioButton>
-            <RadioButton HorizontalAlignment="Right" Visibility="Visible" Grid.Row="1" Foreground="Black" Background="Black" x:Name="rbStr2"></RadioButton>
-            <RadioButton HorizontalAlignment="Right" Visibility="Visible" Grid.Row="2" Foreground="Black" Background="Black" x:Name="rbStr3"></RadioButton>
-            <RadioButton HorizontalAlignment="Right" Visibility="Visible" Grid.Row="3" Foreground="Black" Background="Black" x:Name="rbStr4"></RadioButton>
-            <RadioButton HorizontalAlignment="Right" Visibility="Visible" Grid.Row="4" Foreground="Black" Background="Black" x:Name="rbStr5"></RadioButton>
-            <RadioButton HorizontalAlignment="Right" Visibility="Visible" Grid.Row="5" Foreground="Black" Background="Black" x:Name="rbStr6"></RadioButton>
+            <RadioButton HorizontalAlignment="Right" Visibility="Visible" Foreground="Black" Background="Black" x:Name="rbStr1" IsChecked="True" VerticalAlignment="Bottom" Margin="10, 0, 10, 0"></RadioButton>
+            <RadioButton HorizontalAlignment="Right" Visibility="Visible" Grid.Row="1" Foreground="Black" Background="Black" x:Name="rbStr2" VerticalAlignment="Bottom" Margin="10, 0, 10, 0"></RadioButton>
+            <RadioButton HorizontalAlignment="Right" Visibility="Visible" Grid.Row="2" Foreground="Black" Background="Black" x:Name="rbStr3" VerticalAlignment="Bottom" Margin="10, 0, 10, 0"></RadioButton>
+            <RadioButton HorizontalAlignment="Right" Visibility="Visible" Grid.Row="3" Foreground="Black" Background="Black" x:Name="rbStr4" VerticalAlignment="Bottom" Margin="10, 0, 10, 0"></RadioButton>
+            <RadioButton HorizontalAlignment="Right" Visibility="Visible" Grid.Row="4" Foreground="Black" Background="Black" x:Name="rbStr5" VerticalAlignment="Bottom" Margin="10, 0, 10, 0"></RadioButton>
+            <RadioButton HorizontalAlignment="Right" Visibility="Visible" Grid.Row="5" Foreground="Black" Background="Black" x:Name="rbStr6" VerticalAlignment="Bottom" Margin="10, 0, 10, 0"></RadioButton>
         </Grid>
+
+        <!--НЕСКОЛЬКО ВАРИАНТОВ ОТВЕТА-->
 
         <Grid Grid.Column="3" Grid.Row="2" Grid.RowSpan="4" x:Name="grLotQuestion" Visibility="Collapsed">
             <Grid.RowDefinitions>
@@ -67,15 +71,16 @@
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-            <CheckBox HorizontalAlignment="Right" Visibility="Visible" Foreground="Black" Background="Black" x:Name="chbStr1" IsChecked="True"></CheckBox>
-            <CheckBox HorizontalAlignment="Right" Visibility="Visible" Grid.Row="1" Foreground="Black" Background="Black" x:Name="chbStr2"></CheckBox>
-            <CheckBox HorizontalAlignment="Right" Visibility="Visible" Grid.Row="2" Foreground="Black" Background="Black" x:Name="chbStr3"></CheckBox>
-            <CheckBox HorizontalAlignment="Right" Visibility="Visible" Grid.Row="3" Foreground="Black" Background="Black" x:Name="chbStr4"></CheckBox>
-            <CheckBox HorizontalAlignment="Right" Visibility="Visible" Grid.Row="4" Foreground="Black" Background="Black" x:Name="chbStr5"></CheckBox>
-            <CheckBox HorizontalAlignment="Right" Visibility="Visible" Grid.Row="5" Foreground="Black" Background="Black" x:Name="chbStr6"></CheckBox>
+            <CheckBox HorizontalAlignment="Right" Visibility="Visible" Foreground="Black" Background="Black" x:Name="chbStr1" IsChecked="True" VerticalAlignment="Bottom" Margin="10, 0, 10, 0"></CheckBox>
+            <CheckBox HorizontalAlignment="Right" Visibility="Visible" Grid.Row="1" Foreground="Black" Background="Black" x:Name="chbStr2" VerticalAlignment="Bottom" Margin="10, 0, 10, 0"></CheckBox>
+            <CheckBox HorizontalAlignment="Right" Visibility="Visible" Grid.Row="2" Foreground="Black" Background="Black" x:Name="chbStr3" VerticalAlignment="Bottom" Margin="10, 0, 10, 0"></CheckBox>
+            <CheckBox HorizontalAlignment="Right" Visibility="Visible" Grid.Row="3" Foreground="Black" Background="Black" x:Name="chbStr4" VerticalAlignment="Bottom" Margin="10, 0, 10, 0"></CheckBox>
+            <CheckBox HorizontalAlignment="Right" Visibility="Visible" Grid.Row="4" Foreground="Black" Background="Black" x:Name="chbStr5" VerticalAlignment="Bottom" Margin="10, 0, 10, 0"></CheckBox>
+            <CheckBox HorizontalAlignment="Right" Visibility="Visible" Grid.Row="5" Foreground="Black" Background="Black" x:Name="chbStr6" VerticalAlignment="Bottom" Margin="10, 0, 10, 0"></CheckBox>
         </Grid>
 
-        <Grid Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="2" Grid.RowSpan="4" x:Name="gridCloseQuestion" Visibility="Collapsed">
+        <!--ЗАКРЫТЫЙ ВОПРОС эти можно удалить-->
+        <!--<Grid Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="2" Grid.RowSpan="4" x:Name="gridCloseQuestion" Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
@@ -84,13 +89,15 @@
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-            <TextBox Grid.Row="0" Foreground="Black" Margin="0, 0, 10, 0" x:Name="tbStr1"></TextBox>
-            <TextBox Grid.Row="1" Foreground="Black" Margin="0, 0, 10, 0" x:Name="tbStr2"></TextBox>
-            <TextBox Grid.Row="2" Foreground="Black" Margin="0, 0, 10, 0" x:Name="tbStr3"></TextBox>
-            <TextBox Grid.Row="3" Foreground="Black" Margin="0, 0, 10, 0" x:Name="tbStr4"></TextBox>
-            <TextBox Grid.Row="4" Foreground="Black" Margin="0, 0, 10, 0" x:Name="tbStr5"></TextBox>
-            <TextBox Grid.Row="5" Foreground="Black" Margin="0, 0, 10, 0" x:Name="tbStr6"></TextBox>
-        </Grid>
+            <TextBox Grid.Row="0" Foreground="Black" Margin="10, 0, 10, 0" x:Name="tbStr1" VerticalContentAlignment="Bottom" FontSize="18"></TextBox>
+            <TextBox Grid.Row="1" Foreground="Black" Margin="10, 0, 10, 0" x:Name="tbStr2" VerticalContentAlignment="Bottom" FontSize="18"></TextBox>
+            <TextBox Grid.Row="2" Foreground="Black" Margin="10, 0, 10, 0" x:Name="tbStr3" VerticalContentAlignment="Bottom" FontSize="18"></TextBox>
+            <TextBox Grid.Row="3" Foreground="Black" Margin="10, 0, 10, 0" x:Name="tbStr4" VerticalContentAlignment="Bottom" FontSize="18"></TextBox>
+            <TextBox Grid.Row="4" Foreground="Black" Margin="10, 0, 10, 0" x:Name="tbStr5" VerticalContentAlignment="Bottom" FontSize="18"></TextBox>
+            <TextBox Grid.Row="5" Foreground="Black" Margin="10, 0, 10, 0" x:Name="tbStr6" VerticalContentAlignment="Bottom" FontSize="18"></TextBox>
+        </Grid>-->
+
+        <!--ВОПРОС НА СООТВЕТСТВИЕ-->
 
         <Grid x:Name="gridSootv" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="4" Background="White" Visibility="Collapsed">
             <Grid.RowDefinitions>
@@ -101,15 +108,17 @@
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-            <TextBox Grid.Row="0" Foreground="Black" Margin="0, 0, 10, 0" x:Name="tbStrSootv1"></TextBox>
-            <TextBox Grid.Row="1" Foreground="Black" Margin="0, 0, 10, 0" x:Name="tbStrSootv2"></TextBox>
-            <TextBox Grid.Row="2" Foreground="Black" Margin="0, 0, 10, 0" x:Name="tbStrSootv3"></TextBox>
-            <TextBox Grid.Row="3" Foreground="Black" Margin="0, 0, 10, 0" x:Name="tbStrSootv4"></TextBox>
-            <TextBox Grid.Row="4" Foreground="Black" Margin="0, 0, 10, 0" x:Name="tbStrSootv5"></TextBox>
-            <TextBox Grid.Row="5" Foreground="Black" Margin="0, 0, 10, 0" x:Name="tbStrSootv6"></TextBox>
+            <TextBox Grid.Row="0" Foreground="Black" Margin="10, 0, 10, 0" x:Name="tbStrSootv1" VerticalContentAlignment="Bottom" FontSize="18"></TextBox>
+            <TextBox Grid.Row="1" Foreground="Black" Margin="10, 0, 10, 0" x:Name="tbStrSootv2" VerticalContentAlignment="Bottom" FontSize="18"></TextBox>
+            <TextBox Grid.Row="2" Foreground="Black" Margin="10, 0, 10, 0" x:Name="tbStrSootv3" VerticalContentAlignment="Bottom" FontSize="18"></TextBox>
+            <TextBox Grid.Row="3" Foreground="Black" Margin="10, 0, 10, 0" x:Name="tbStrSootv4" VerticalContentAlignment="Bottom" FontSize="18"></TextBox>
+            <TextBox Grid.Row="4" Foreground="Black" Margin="10, 0, 10, 0" x:Name="tbStrSootv5" VerticalContentAlignment="Bottom" FontSize="18"></TextBox>
+            <TextBox Grid.Row="5" Foreground="Black" Margin="10, 0, 10, 0" x:Name="tbStrSootv6" VerticalContentAlignment="Bottom" FontSize="18"></TextBox>
         </Grid>
 
-        <Grid x:Name="gridSledovanie" Grid.Column="2" Grid.Row="2" Grid.RowSpan="4" Background="White" Visibility="Collapsed">
+        <!--ВОПРОС НА СЛЕДОВАНИЕ-->
+
+        <Grid x:Name="gridSledovanie" Grid.Column="3" Grid.Row="2" Grid.RowSpan="4" Background="White" Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
@@ -118,14 +127,17 @@
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Foreground="Black" Margin="0, 30, 10, 0" x:Name="tblStr1" FontSize="22" TextAlignment="Center">1</TextBlock>
-            <TextBlock Grid.Row="1" Foreground="Black" Margin="0, 30, 10, 0" x:Name="tblStr2" FontSize="22" TextAlignment="Center">2</TextBlock>
-            <TextBlock Grid.Row="2" Foreground="Black" Margin="0, 30, 10, 0" x:Name="tblStr3" FontSize="22" TextAlignment="Center">3</TextBlock>
-            <TextBlock Grid.Row="3" Foreground="Black" Margin="0, 30, 10, 0" x:Name="tblStr4" FontSize="22" TextAlignment="Center">4</TextBlock>
-            <TextBlock Grid.Row="4" Foreground="Black" Margin="0, 30, 10, 0" x:Name="tblStr5" FontSize="22" TextAlignment="Center">5</TextBlock>
-            <TextBlock Grid.Row="5" Foreground="Black" Margin="0, 30, 10, 0" x:Name="tblStr6" FontSize="22" TextAlignment="Center">6</TextBlock>
+            <TextBlock Grid.Row="0" Foreground="Black" Margin="0, 0, 0, 0" x:Name="tblStr1" FontSize="22" TextAlignment="Center" VerticalAlignment="Bottom">1</TextBlock>
+            <TextBlock Grid.Row="1" Foreground="Black" Margin="0, 0, 0, 0" x:Name="tblStr2" FontSize="22" TextAlignment="Center" VerticalAlignment="Bottom">2</TextBlock>
+            <TextBlock Grid.Row="2" Foreground="Black" Margin="0, 0, 0, 0" x:Name="tblStr3" FontSize="22" TextAlignment="Center" VerticalAlignment="Bottom">3</TextBlock>
+            <TextBlock Grid.Row="3" Foreground="Black" Margin="0, 0, 0, 0" x:Name="tblStr4" FontSize="22" TextAlignment="Center" VerticalAlignment="Bottom">4</TextBlock>
+            <TextBlock Grid.Row="4" Foreground="Black" Margin="0, 0, 0, 0" x:Name="tblStr5" FontSize="22" TextAlignment="Center" VerticalAlignment="Bottom">5</TextBlock>
+            <TextBlock Grid.Row="5" Foreground="Black" Margin="0, 0, 0, 0" x:Name="tblStr6" FontSize="22" TextAlignment="Center" VerticalAlignment="Bottom">6</TextBlock>
         </Grid>
-        <Grid Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="5" Grid.RowSpan="5" Visibility="Collapsed" x:Name="gridSetting" Margin="0,8,0,38">
+
+        <!--НАСТРОЙКИ ТЕСТА-->
+
+        <Grid Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="5" Grid.RowSpan="3" Visibility="Collapsed" x:Name="gridSetting" Margin="0,8,0,38">
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.7*"></RowDefinition>
                 <RowDefinition></RowDefinition>
@@ -137,23 +149,28 @@
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="0.4*"></ColumnDefinition>
                 <ColumnDefinition Width="1.4*"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <CheckBox x:Name="cbRandomQuestion" Grid.Row="1" Grid.Column="1" Foreground="Black" FontSize="16">Случайный порядок вопросов</CheckBox>
-            <CheckBox x:Name="cbTimeLimit" Grid.Row="3" Grid.Column="1" Foreground="Black" FontSize="16">Ограничение по времени</CheckBox>
-            <TextBox Grid.Row="5" Grid.Column="1" Background="AliceBlue" Foreground="Black" FontSize="16" HorizontalContentAlignment="Center" Visibility="Visible" VerticalContentAlignment="Center">Введите кол-во минут</TextBox>
-            <Button x:Name="btnOK" Grid.Column="0" Grid.Row="6" BorderBrush="{x:Null}" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Click="BtnOK_Click">
-                <materialDesign:PackIcon Kind="Close" Height="30" Width="18"></materialDesign:PackIcon>
+            <CheckBox x:Name="cbRandomQuestion" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1" Foreground="Black" FontSize="16">Случайный порядок вопросов</CheckBox>
+            <CheckBox HorizontalAlignment="Center" x:Name="cbTimeLimit" Grid.Row="3" Grid.Column="1" Foreground="Black" FontSize="16" Checked="cbTimeLimit_Checked" Unchecked="cbTimeLimit_Unchecked">Ограничение по времени</CheckBox>
+            <TextBox x:Name="tbTimeLimit" Visibility="Hidden" Grid.Row="5" Grid.Column="1" Background="AliceBlue" FontSize="16" HorizontalContentAlignment="Center" Foreground="Gray" VerticalContentAlignment="Center" GotFocus="tbTimeLimit_GotFocus" LostFocus="tbTimeLimit_LostFocus" TextChanged="tbTimeLimit_TextChanged" PreviewTextInput="tbTimeLimit_PreviewTextInput" MaxLength="3">Введите кол-во минут</TextBox>
+            <Button x:Name="btnOK" Grid.Column="1" Grid.Row="6" BorderBrush="{x:Null}" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Click="BtnOK_Click">
+                <materialDesign:PackIcon Kind="Check" Height="30" Width="18"></materialDesign:PackIcon>
             </Button>
         </Grid>
+
+        <!--КНОПКИ-->
         <Button Grid.Column="1" Grid.Row="6" Click="NotQuestion">
             <materialDesign:PackIcon Kind="Check"></materialDesign:PackIcon>
         </Button>
         <Button Grid.Column="6" Grid.Row="6" Click="Button_Click_1">
             <materialDesign:PackIcon Kind="Check"></materialDesign:PackIcon>
         </Button>
+
+        <!--СТРОКИ КОНСТАНТЫ-->
+
         <Grid Grid.Column="4" Grid.Row="2" Grid.RowSpan="4" Grid.ColumnSpan="3" x:Name="grConstString" Visibility="Visible">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
@@ -164,22 +181,22 @@
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <ScrollViewer Grid.Row="0">
-                <TextBox FontSize="14"  TextWrapping="Wrap" AcceptsReturn="True" x:Name="tbConstStr1"></TextBox>
+                <TextBox TextWrapping="Wrap" AcceptsReturn="True" x:Name="tbConstStr1" VerticalContentAlignment="Bottom" FontSize="18"></TextBox>
             </ScrollViewer>
             <ScrollViewer Grid.Row="1">
-                <TextBox FontSize="14"  TextWrapping="Wrap" AcceptsReturn="True" x:Name="tbConstStr2"></TextBox>
+                <TextBox FontSize="18"  TextWrapping="Wrap" AcceptsReturn="True" x:Name="tbConstStr2" VerticalContentAlignment="Bottom"></TextBox>
             </ScrollViewer>
             <ScrollViewer Grid.Row="2">
-                <TextBox FontSize="14"  TextWrapping="Wrap" AcceptsReturn="True" x:Name="tbConstStr3"></TextBox>
+                <TextBox FontSize="18"  TextWrapping="Wrap" AcceptsReturn="True" x:Name="tbConstStr3" VerticalContentAlignment="Bottom"></TextBox>
             </ScrollViewer>
             <ScrollViewer Grid.Row="3">
-                <TextBox FontSize="14"  TextWrapping="Wrap" AcceptsReturn="True" x:Name="tbConstStr4"></TextBox>
+                <TextBox FontSize="18"  TextWrapping="Wrap" AcceptsReturn="True" x:Name="tbConstStr4" VerticalContentAlignment="Bottom"></TextBox>
             </ScrollViewer>
             <ScrollViewer Grid.Row="4">
-                <TextBox FontSize="14"  TextWrapping="Wrap" AcceptsReturn="True" x:Name="tbConstStr5"></TextBox>
+                <TextBox FontSize="18"  TextWrapping="Wrap" AcceptsReturn="True" x:Name="tbConstStr5" VerticalContentAlignment="Bottom"></TextBox>
             </ScrollViewer>
             <ScrollViewer Grid.Row="5">
-                <TextBox FontSize="14"  TextWrapping="Wrap" AcceptsReturn="True" x:Name="tbConstStr6"></TextBox>
+                <TextBox FontSize="18"  TextWrapping="Wrap" AcceptsReturn="True" x:Name="tbConstStr6" VerticalContentAlignment="Bottom"></TextBox>
             </ScrollViewer>
         </Grid>
     </Grid>
