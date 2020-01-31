@@ -494,47 +494,217 @@ namespace CreaterTest
             this.Close();
         }
 
+        public void switchwithlist()
+        {
+            
+                Test outjs = JsonConvert.DeserializeObject<Test>(js);
+                //tbFormulirovka.Text = outjs.questions[dgView.SelectedIndex].quest;
+                var listik = outjs.questions[dgView.SelectedIndex].optionQuestions.ToList();
+                int listcount = listik.Count();
+            switch (listcount)
+            {
+                case 1:
+                    tbConstStr1.Text = listik[0].option;
+                    break;
+                case 2:
+                    tbConstStr1.Text = listik[0].option;
+                    tbConstStr2.Text = listik[1].option;
+                    break;
+                case 3:
+                    tbConstStr1.Text = listik[0].option;
+                    tbConstStr2.Text = listik[1].option;
+                    tbConstStr3.Text = listik[2].option;
+                    break;
+                case 4:
+                    tbConstStr1.Text = listik[0].option;
+                    tbConstStr2.Text = listik[1].option;
+                    tbConstStr3.Text = listik[2].option;
+                    tbConstStr4.Text = listik[3].option;
+                    break;
+                case 5:
+                    tbConstStr1.Text = listik[0].option;
+                    tbConstStr2.Text = listik[1].option;
+                    tbConstStr3.Text = listik[2].option;
+                    tbConstStr4.Text = listik[3].option;
+                    tbConstStr5.Text = listik[4].option;
+                    break;
+            }
+
+        }
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            collapsedallpanel();
             try
             {
                 Test outjs = JsonConvert.DeserializeObject<Test>(js);
                 tbFormulirovka.Text = outjs.questions[dgView.SelectedIndex].quest;
                 var listik = outjs.questions[dgView.SelectedIndex].optionQuestions.ToList();
                 int listcount = listik.Count();
-
-                switch (listcount)
+                if (outjs.questions[dgView.SelectedIndex].typeQuestion == 0)
                 {
-                    case 1:
-                        tbConstStr1.Text = listik[0].option;
-                        break;
-                    case 2:
-                        tbConstStr1.Text = listik[0].option;
-                        tbConstStr2.Text = listik[1].option;
-                        break;
-                    case 3:
-                        tbConstStr1.Text = listik[0].option;
-                        tbConstStr2.Text = listik[1].option;
-                        tbConstStr3.Text = listik[2].option;
-                        break;
-                    case 4:
-                        tbConstStr1.Text = listik[0].option;
-                        tbConstStr2.Text = listik[1].option;
-                        tbConstStr3.Text = listik[2].option;
-                        tbConstStr4.Text = listik[3].option;
-                        break;
-                    case 5:
-                        tbConstStr1.Text = listik[0].option;
-                        tbConstStr2.Text = listik[1].option;
-                        tbConstStr3.Text = listik[2].option;
-                        tbConstStr4.Text = listik[3].option;
-                        tbConstStr5.Text = listik[4].option;
-                        break;
+                    switchwithlist();
+                    gridOneVar.Visibility = Visibility.Visible;
+                    switch (listcount)
+                    {
+                        case 1:
+                            rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
+                            break;
+                        case 2:
+                            rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
+                            rbStr2.IsChecked = Convert.ToBoolean(listik[1].value);
+                            break;
+                        case 3:
+                            rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
+                            rbStr2.IsChecked = Convert.ToBoolean(listik[1].value);
+                            rbStr3.IsChecked = Convert.ToBoolean(listik[2].value);
+                            break;
+                        case 4:
+                            rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
+                            rbStr2.IsChecked = Convert.ToBoolean(listik[1].value);
+                            rbStr3.IsChecked = Convert.ToBoolean(listik[2].value);
+                            rbStr4.IsChecked = Convert.ToBoolean(listik[3].value);
+                            break;
+                        case 5:
+                            rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
+                            rbStr2.IsChecked = Convert.ToBoolean(listik[1].value);
+                            rbStr3.IsChecked = Convert.ToBoolean(listik[2].value);
+                            rbStr4.IsChecked = Convert.ToBoolean(listik[3].value);
+                            rbStr5.IsChecked = Convert.ToBoolean(listik[4].value);
+                            break;
+                    }
+                }
+                else if (outjs.questions[dgView.SelectedIndex].typeQuestion == 1)
+                {
+                    switchwithlist();
+                    grLotQuestion.Visibility = Visibility.Visible;
+                    switch (listcount)
+                    {
+                        case 1:
+                            rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
+                            break;
+                        case 2:
+                            rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
+                            rbStr2.IsChecked = Convert.ToBoolean(listik[1].value);
+                            break;
+                        case 3:
+                            rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
+                            rbStr2.IsChecked = Convert.ToBoolean(listik[1].value);
+                            rbStr3.IsChecked = Convert.ToBoolean(listik[2].value);
+                            break;
+                        case 4:
+                            rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
+                            rbStr2.IsChecked = Convert.ToBoolean(listik[1].value);
+                            rbStr3.IsChecked = Convert.ToBoolean(listik[2].value);
+                            rbStr4.IsChecked = Convert.ToBoolean(listik[3].value);
+                            break;
+                        case 5:
+                            rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
+                            rbStr2.IsChecked = Convert.ToBoolean(listik[1].value);
+                            rbStr3.IsChecked = Convert.ToBoolean(listik[2].value);
+                            rbStr4.IsChecked = Convert.ToBoolean(listik[3].value);
+                            rbStr5.IsChecked = Convert.ToBoolean(listik[4].value);
+                            break;
+                    }
+                }
+                else if (outjs.questions[dgView.SelectedIndex].typeQuestion == 2)
+                {
+                    switchwithlist();
+                    gridSootv.Visibility = Visibility.Visible;
+                    switch (listcount)
+                    {
+                        case 1:
+                            rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
+                            break;
+                        case 2:
+                            rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
+                            rbStr2.IsChecked = Convert.ToBoolean(listik[1].value);
+                            break;
+                        case 3:
+                            rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
+                            rbStr2.IsChecked = Convert.ToBoolean(listik[1].value);
+                            rbStr3.IsChecked = Convert.ToBoolean(listik[2].value);
+                            break;
+                        case 4:
+                            rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
+                            rbStr2.IsChecked = Convert.ToBoolean(listik[1].value);
+                            rbStr3.IsChecked = Convert.ToBoolean(listik[2].value);
+                            rbStr4.IsChecked = Convert.ToBoolean(listik[3].value);
+                            break;
+                        case 5:
+                            rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
+                            rbStr2.IsChecked = Convert.ToBoolean(listik[1].value);
+                            rbStr3.IsChecked = Convert.ToBoolean(listik[2].value);
+                            rbStr4.IsChecked = Convert.ToBoolean(listik[3].value);
+                            rbStr5.IsChecked = Convert.ToBoolean(listik[4].value);
+                            break;
+                    }
+                }
+                else if (outjs.questions[dgView.SelectedIndex].typeQuestion == 3)
+                {
+                    switch (listcount)
+                    {
+                        case 1:
+                            rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
+                            break;
+                        case 2:
+                            rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
+                            rbStr2.IsChecked = Convert.ToBoolean(listik[1].value);
+                            break;
+                        case 3:
+                            rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
+                            rbStr2.IsChecked = Convert.ToBoolean(listik[1].value);
+                            rbStr3.IsChecked = Convert.ToBoolean(listik[2].value);
+                            break;
+                        case 4:
+                            rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
+                            rbStr2.IsChecked = Convert.ToBoolean(listik[1].value);
+                            rbStr3.IsChecked = Convert.ToBoolean(listik[2].value);
+                            rbStr4.IsChecked = Convert.ToBoolean(listik[3].value);
+                            break;
+                        case 5:
+                            rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
+                            rbStr2.IsChecked = Convert.ToBoolean(listik[1].value);
+                            rbStr3.IsChecked = Convert.ToBoolean(listik[2].value);
+                            rbStr4.IsChecked = Convert.ToBoolean(listik[3].value);
+                            rbStr5.IsChecked = Convert.ToBoolean(listik[4].value);
+                            break;
+                    }
+                }
+                else if (outjs.questions[dgView.SelectedIndex].typeQuestion == 4)
+                {
+                    switch (listcount)
+                    {
+                        case 1:
+                            rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
+                            break;
+                        case 2:
+                            rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
+                            rbStr2.IsChecked = Convert.ToBoolean(listik[1].value);
+                            break;
+                        case 3:
+                            rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
+                            rbStr2.IsChecked = Convert.ToBoolean(listik[1].value);
+                            rbStr3.IsChecked = Convert.ToBoolean(listik[2].value);
+                            break;
+                        case 4:
+                            rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
+                            rbStr2.IsChecked = Convert.ToBoolean(listik[1].value);
+                            rbStr3.IsChecked = Convert.ToBoolean(listik[2].value);
+                            rbStr4.IsChecked = Convert.ToBoolean(listik[3].value);
+                            break;
+                        case 5:
+                            rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
+                            rbStr2.IsChecked = Convert.ToBoolean(listik[1].value);
+                            rbStr3.IsChecked = Convert.ToBoolean(listik[2].value);
+                            rbStr4.IsChecked = Convert.ToBoolean(listik[3].value);
+                            rbStr5.IsChecked = Convert.ToBoolean(listik[4].value);
+                            break;
+                    }
                 }
             }
             catch
             {
-                MessageBox.Show("Ошибка, данный вопрос не существует", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+
             }
         }
 

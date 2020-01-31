@@ -40,8 +40,9 @@
                     </StackPanel>
                 </ListViewItem>
             </ListView>
+            <TextBox  x:Name="tbStroka"  Height="23" TextWrapping="Wrap" Text="TextBox"/>
         </StackPanel>
-        <DataGrid Grid.Column="1" Grid.RowSpan="2" Margin="10" Background="White" Foreground="Black" BorderBrush="Black" Name="dgView" Visibility="Visible">
+        <DataGrid Grid.Column="1" Grid.RowSpan="2" Margin="10" Background="White" Foreground="Black" BorderBrush="Black" Name="dgView" Visibility="Visible" SelectionChanged="DgView_SelectionChanged">
         </DataGrid>
         <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="147,171,0,0" Foreground="White"  Background="Black" Visibility="Collapsed" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" x:Name="qwfgsdg" RenderTransformOrigin="0.5,0.5" Height="147" Grid.RowSpan="2" Width="261">
             <TextBlock.RenderTransform>

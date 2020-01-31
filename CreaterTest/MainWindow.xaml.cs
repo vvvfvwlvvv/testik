@@ -52,26 +52,14 @@ namespace CreaterTest
 
         private void ListViewItem_Selected_2(object sender, RoutedEventArgs e)
         {
-            TestList outjs = JsonConvert.DeserializeObject<TestList>(js);
-            outjs.testsq.RemoveAt(dgView.SelectedIndex);
-            object testinput = new
-            {
-                testsqq = outjs
-            };
-
-            using (StreamWriter writer = File.CreateText(@"C:\Users\User\Desktop\q\qqq.json"))
-            {
-                string qq = JsonConvert.SerializeObject(testinput);
-                writer.Write(outjs);
-            }
             try
             {
-                
-                dgView.ItemsSource = outjs.testsq.Select(n => new { n.idTest, n.name, s = n.randomOrderTest.ToString(), q = n.randomOrderQuest.ToString() }).ToList();
+                string tt = (dgView.Columns[0].GetCellContent(dgView.SelectedItem) as TextBlock).Text;
+                tbStroka.Text = tt;
             }
             catch
             {
-                MessageBox.Show("Тесты не обнаружены", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Выберите тест для удаления", "Ошибка удаления", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
@@ -88,6 +76,10 @@ namespace CreaterTest
                 }
         }
 
+        private void DgView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
 
