@@ -26,12 +26,12 @@ namespace CreaterTest
         {
             InitializeComponent();
         }
-        
+        AddRedTest adred = new AddRedTest();
         string js = File.ReadAllText(@"C:\Users\User\Desktop\q\qqq.json");
         public int tempID;
         private void ListViewItem_Selected(object sender, RoutedEventArgs e)
         {
-            AddRedTest adred = new AddRedTest();
+            
             this.Hide();
             adred.ShowDialog();
             this.Show();
@@ -39,16 +39,14 @@ namespace CreaterTest
 
         private void ListViewItem_Selected_1(object sender, RoutedEventArgs e)
         {
-            TestList outjs = JsonConvert.DeserializeObject<TestList>(js);
+            
             tempID = dgView.SelectedIndex;
             //tblTV.Text = outjs.testsq.FirstOrDefault(n => n.name == tempID).randomOrder.ToString();
-            AddRedTest adred = new AddRedTest();
+            
             adred.indexTMP = tempID;
             adred.move = "Редактирование";
-            adred.Show();
-            this.Hide();
-
-
+            adred.ShowDialog();
+            this.Close();
         }
 
         private void ListViewItem_Selected_2(object sender, RoutedEventArgs e)

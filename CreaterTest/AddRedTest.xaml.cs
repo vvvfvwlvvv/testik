@@ -27,7 +27,7 @@ namespace CreaterTest
         List<Question> qlists = new List<Question>();
         List<TestList> testsq = new List<TestList>();
         List<Test> testsqq = new List<Test>();
-
+        
         public int idTestik = 0;
         public int idQuestion = 0;
         public int idOption = 0;
@@ -89,6 +89,8 @@ namespace CreaterTest
             { 
                 Test outjs = JsonConvert.DeserializeObject<Test>(js);
                 dgView.ItemsSource = outjs.questions.Select(n => new { n.idQuestion, s = n.quest }).ToList();
+                dgView.Columns[0].Header = "Id";
+                dgView.Columns[1].Header = "Формулировка вопроса";
             }
         }
 
@@ -99,12 +101,16 @@ namespace CreaterTest
 
         private void BtnGoSetting_Click(object sender, RoutedEventArgs e)
         {
+            collapsedallpanel();
+            grConstString.Visibility = Visibility.Collapsed;
             gridSetting.Visibility = Visibility.Visible;
+
         }
 
         private void BtnOK_Click(object sender, RoutedEventArgs e)
         {
             gridSetting.Visibility = Visibility.Collapsed;
+            grConstString.Visibility = Visibility.Visible;
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -112,238 +118,42 @@ namespace CreaterTest
             ///<summary>
             ///Логика добавления вопросов
             /// </summary>
-             
-            List<OptionQuestions> es = new List<OptionQuestions>();// Каждый раз создается экземпляр ответов, чтобы для каждого вопроса не повторялись ответы
+            WorkWithForm wwf = new WorkWithForm();
             if (cbTypeQuestion.SelectedItem.ToString() == "Последовательность")
             {
-                if (tbConstStr1.Text != "")
-                {
-
-                    es.Add(new OptionQuestions()
-                    {
-                        idOption = idOption++,
-                        option = tbConstStr1.Text,
-                        value = tblStr1.Text
-                    });
-                }
-                if (tbConstStr2.Text != "")
-                {
-
-                    es.Add(new OptionQuestions()
-                    {
-                        idOption = idOption++,
-                        option = tbConstStr2.Text,
-                        value = tblStr2.Text
-                    });
-                }
-                if (tbConstStr3.Text != "")
-                {
-
-                    es.Add(new OptionQuestions()
-                    {
-                        idOption = idOption++,
-                        option = tbConstStr3.Text,
-                        value = tblStr3.Text
-                    });
-                }
-                if (tbConstStr4.Text != "")
-                {
-                    es.Add(new OptionQuestions()
-                    {
-                        idOption = idOption++,
-                        option = tbConstStr4.Text,
-                        value = tblStr4.Text
-                    });
-                }
-                if (tbConstStr5.Text != "")
-                {
-                    es.Add(new OptionQuestions()
-                    {
-                        idOption = idOption++,
-                        option = tbConstStr5.Text,
-                        value = tblStr5.Text
-                    });
-                }
-                if (tbConstStr6.Text != "")
-                {
-                    es.Add(new OptionQuestions()
-                    {
-                        idOption = idOption++,
-                        option = tbConstStr6.Text,
-                        value = tblStr6.Text
-                    });
-                }
+                wwf.checkConstStroka(tbConstStr1, tblStr1.Text);
+                wwf.checkConstStroka(tbConstStr2, tblStr2.Text);
+                wwf.checkConstStroka(tbConstStr3, tblStr3.Text);
+                wwf.checkConstStroka(tbConstStr4, tblStr4.Text);
+                wwf.checkConstStroka(tbConstStr5, tblStr5.Text);
+                wwf.checkConstStroka(tbConstStr6, tblStr6.Text);
             }
             else if (cbTypeQuestion.SelectedItem.ToString() == "Несколько вариантов")
             {
-                if (tbConstStr1.Text != "")
-                {
-                    es.Add(new OptionQuestions()
-                    {
-                        idOption = idOption++,
-                        option = tbConstStr1.Text,
-                        value = chbStr1.IsChecked.ToString()
-                    });
-                }
-                if (tbConstStr1.Text != "")
-                {
-                    es.Add(new OptionQuestions()
-                    {
-                        idOption = idOption++,
-                        option = tbConstStr2.Text,
-                        value = chbStr2.IsChecked.ToString()
-                    });
-                }
-                if (tbConstStr3.Text != "")
-                {
-                    es.Add(new OptionQuestions()
-                    {
-                        idOption = idOption++,
-                        option = tbConstStr3.Text,
-                        value = chbStr3.IsChecked.ToString()
-                    });
-                }
-                if (tbConstStr4.Text != "")
-                {
-                    es.Add(new OptionQuestions()
-                    {
-                        idOption = idOption++,
-                        option = tbConstStr4.Text,
-                        value = chbStr4.IsChecked.ToString()
-                    });
-                }
-                if (tbConstStr5.Text != "")
-                {
-                    es.Add(new OptionQuestions()
-                    {
-                        idOption = idOption++,
-                        option = tbConstStr5.Text,
-                        value = chbStr5.IsChecked.ToString()
-                    });
-                }
-                if (tbConstStr6.Text != "")
-                {
-                    es.Add(new OptionQuestions()
-                    {
-                        idOption = idOption++,
-                        option = tbConstStr6.Text,
-                        value = chbStr6.IsChecked.ToString()
-                    });
-                }
+                wwf.checkConstStroka(tbConstStr1, chbStr1.IsChecked.ToString());
+                wwf.checkConstStroka(tbConstStr2, chbStr2.IsChecked.ToString());
+                wwf.checkConstStroka(tbConstStr3, chbStr3.IsChecked.ToString());
+                wwf.checkConstStroka(tbConstStr4, chbStr4.IsChecked.ToString());
+                wwf.checkConstStroka(tbConstStr5, chbStr5.IsChecked.ToString());
+                wwf.checkConstStroka(tbConstStr6, chbStr6.IsChecked.ToString());
             }
             else if (cbTypeQuestion.SelectedItem.ToString() == "Один вариант")
             {
-                if (tbConstStr1.Text != "")
-                {
-                    es.Add(new OptionQuestions()
-                    {
-                        idOption = idOption++,
-                        option = tbConstStr1.Text,
-                        value = rbStr1.IsChecked.ToString()
-                    });
-                }
-                if (tbConstStr2.Text != "")
-                {
-                    es.Add(new OptionQuestions()
-                    {
-                        idOption = idOption++,
-                        option = tbConstStr2.Text,
-                        value = rbStr2.IsChecked.ToString()
-                    });
-                }
-                if (tbConstStr3.Text != "")
-                {
-                    es.Add(new OptionQuestions()
-                    {
-                        idOption = idOption++,
-                        option = tbConstStr3.Text,
-                        value = rbStr3.IsChecked.ToString()
-                    });
-                }
-                if (tbConstStr4.Text != "")
-                {
-                    es.Add(new OptionQuestions()
-                    {
-                        idOption = idOption++,
-                        option = tbConstStr4.Text,
-                        value = rbStr4.IsChecked.ToString()
-                    });
-                }
-                if (tbConstStr5.Text != "")
-                {
-                    es.Add(new OptionQuestions()
-                    {
-                        idOption = idOption++,
-                        option = tbConstStr5.Text,
-                        value = rbStr5.IsChecked.ToString()
-                    });
-                }
-                if (tbConstStr6.Text != "")
-                {
-                    es.Add(new OptionQuestions()
-                    {
-                        idOption = idOption++,
-                        option = tbConstStr6.Text,
-                        value = rbStr6.IsChecked.ToString()
-                    });
-                }
+                wwf.checkConstStroka(tbConstStr1, rbStr1.IsChecked.ToString());
+                wwf.checkConstStroka(tbConstStr2, rbStr2.IsChecked.ToString());
+                wwf.checkConstStroka(tbConstStr3, rbStr3.IsChecked.ToString());
+                wwf.checkConstStroka(tbConstStr4, rbStr4.IsChecked.ToString());
+                wwf.checkConstStroka(tbConstStr5, rbStr5.IsChecked.ToString());
+                wwf.checkConstStroka(tbConstStr6, rbStr6.IsChecked.ToString());
             }
             else if (cbTypeQuestion.SelectedItem.ToString() == "Закрытый вопрос" || cbTypeQuestion.SelectedItem.ToString() == "Соответствие")
             {
-                if (tbConstStr1.Text != "" && tbStrSootv1.Text != "")
-                {
-                    es.Add(new OptionQuestions()
-                    {
-                        idOption = idOption++,
-                        option = tbConstStr1.Text,
-                        value = tbStrSootv1.Text
-                    });
-                }
-                if (tbConstStr2.Text != "" && tbStrSootv2.Text != "")
-                {
-                    es.Add(new OptionQuestions()
-                    {
-                        idOption = idOption++,
-                        option = tbConstStr2.Text,
-                        value = tbStrSootv2.Text
-                    });
-                }
-                if (tbConstStr3.Text != "" && tbStrSootv3.Text != "")
-                {
-                    es.Add(new OptionQuestions()
-                    {
-                        idOption = idOption++,
-                        option = tbConstStr3.Text,
-                        value = tbStrSootv3.Text
-                    });
-                }
-                if (tbConstStr4.Text != "" && tbStrSootv4.Text != "")
-                {
-                    es.Add(new OptionQuestions()
-                    {
-                        idOption = idOption++,
-                        option = tbConstStr4.Text,
-                        value = tbStrSootv4.Text
-                    });
-                }
-                if (tbConstStr5.Text != "" && tbStrSootv5.Text != "")
-                {
-                    es.Add(new OptionQuestions()
-                    {
-                        idOption = idOption++,
-                        option = tbConstStr5.Text,
-                        value = tblStr5.Text
-                    });
-                }
-                if (tbConstStr6.Text != "" && tbStrSootv6.Text != "")
-                {
-                    es.Add(new OptionQuestions()
-                    {
-                        idOption = idOption++,
-                        option = tbConstStr6.Text,
-                        value = tbStrSootv6.Text
-                    });
-                }
+                wwf.checkConstStroka(tbConstStr1, tbStrSootv1.Text);
+                wwf.checkConstStroka(tbConstStr2, tbStrSootv2.Text);
+                wwf.checkConstStroka(tbConstStr3, tbStrSootv3.Text);
+                wwf.checkConstStroka(tbConstStr4, tbStrSootv4.Text);
+                wwf.checkConstStroka(tbConstStr5, tbStrSootv5.Text);
+                wwf.checkConstStroka(tbConstStr6, tbStrSootv6.Text);
             }
 
             int typeVopr = 0;
@@ -359,10 +169,10 @@ namespace CreaterTest
                     typeVopr = 3;
                     break;
                 case "Последовательность":
-                    typeVopr = 4;
+                    typeVopr = 5;
                     break;
                 case "Закрытый вопрос":
-                    typeVopr = 5;
+                    typeVopr = 4;
                     break;
             }
 
@@ -371,8 +181,9 @@ namespace CreaterTest
                 idQuestion = idQuestion++,
                 quest = tbFormulirovka.Text,
                 typeQuestion = typeVopr,
-                optionQuestions = es
+                optionQuestions = wwf.es
             });
+            
 
             index = 0;
             dgView.ItemsSource = qlists.Select(spisokVoprosov =>new {k=index++, spisokVoprosov.quest }).ToList();
@@ -387,62 +198,7 @@ namespace CreaterTest
             tbConstStr6.Clear();
         }
 
-        private void NotQuestion(object sender, RoutedEventArgs e)
-        {
-            // Добавление в тест + настройки теста
-            string timelimits;
-            if (cbTimeLimit.IsChecked == true)
-                timelimits = cbTimeLimit.IsChecked.ToString();
-            else timelimits = "0";
-
-            object qlistinput = new
-            {
-                questions = qlists
-            };
-
-            testsq.Add(new TestList()
-            {
-                testsq = testsqq
-            });
-
-            object testinput = new
-            {
-                idTest = idTestik++,
-                name = tbnameTest.Text,
-                randomOrderTest = cbRandomQuestion.IsChecked.Value,
-                randomOrderQuest = cbRandomQuestion.IsChecked.Value,
-                timeLimit = timelimits,
-                questions = qlists
-            };
-            
-
-            ///<summary>
-            ///Логика подключения и передачи данных на сокет
-            /// </summary>
-
-            //Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            //socket.Connect("95.182.122.115", 25565);
-            //string writeInstruction = "writeToNewTest";
-            //byte [] sockWrite = Encoding.UTF8.GetBytes(ss);
-            //byte[] jsString = Encoding.UTF8.GetBytes(outjs);
-            //socket.Send(b);
-            //socket.Send(q);
-            //socket.Close();
-
-
-            ///<summary>
-            ///Временная логика записи строки в Json
-            /// </summary>
-
-            using (StreamWriter writer = File.CreateText(@"C:\Users\User\Desktop\q\qqq.json"))
-            {
-                string outjs = JsonConvert.SerializeObject(testinput);
-                writer.Write(outjs);
-            }
-            
-            MessageBox.Show("Тест был успешно добавлен", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
-            this.Close();
-        }
+        
 
         public void switchwithlist()
         {
@@ -483,6 +239,7 @@ namespace CreaterTest
         }
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            switchwithlist();
             collapsedallpanel();
             try
             {
@@ -490,175 +247,133 @@ namespace CreaterTest
                 tbFormulirovka.Text = outjs.questions[dgView.SelectedIndex].quest;
                 var listik = outjs.questions[dgView.SelectedIndex].optionQuestions.ToList();
                 int listcount = listik.Count();
-                if (outjs.questions[dgView.SelectedIndex].typeQuestion == 0)
+                int typeVoprId = outjs.questions[dgView.SelectedIndex].typeQuestion;
+                switch (typeVoprId)
                 {
-                    switchwithlist();
-                    gridOneVar.Visibility = Visibility.Visible;
-                    switch (listcount)
-                    {
-                        case 1:
-                            rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
-                            break;
-                        case 2:
-                            rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
-                            rbStr2.IsChecked = Convert.ToBoolean(listik[1].value);
-                            break;
-                        case 3:
-                            rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
-                            rbStr2.IsChecked = Convert.ToBoolean(listik[1].value);
-                            rbStr3.IsChecked = Convert.ToBoolean(listik[2].value);
-                            break;
-                        case 4:
-                            rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
-                            rbStr2.IsChecked = Convert.ToBoolean(listik[1].value);
-                            rbStr3.IsChecked = Convert.ToBoolean(listik[2].value);
-                            rbStr4.IsChecked = Convert.ToBoolean(listik[3].value);
-                            break;
-                        case 5:
-                            rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
-                            rbStr2.IsChecked = Convert.ToBoolean(listik[1].value);
-                            rbStr3.IsChecked = Convert.ToBoolean(listik[2].value);
-                            rbStr4.IsChecked = Convert.ToBoolean(listik[3].value);
-                            rbStr5.IsChecked = Convert.ToBoolean(listik[4].value);
-                            break;
-                    }
+                    case 1:
+                        cbTypeQuestion.SelectedIndex = typeVoprId - 1;
+                        
+                        gridOneVar.Visibility = Visibility.Visible;
+                        
+                        switch (listcount)
+                        {
+                            case 1: 
+                                rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
+                                break;
+                            case 2:
+                                rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
+                                rbStr2.IsChecked = Convert.ToBoolean(listik[1].value);
+                                break;
+                            case 3:
+                                rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
+                                rbStr2.IsChecked = Convert.ToBoolean(listik[1].value);
+                                rbStr3.IsChecked = Convert.ToBoolean(listik[2].value);
+                                break;
+                            case 4:
+                                rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
+                                rbStr2.IsChecked = Convert.ToBoolean(listik[1].value);
+                                rbStr3.IsChecked = Convert.ToBoolean(listik[2].value);
+                                rbStr4.IsChecked = Convert.ToBoolean(listik[3].value);
+                                break;
+                            case 5:
+                                rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
+                                rbStr2.IsChecked = Convert.ToBoolean(listik[1].value);
+                                rbStr3.IsChecked = Convert.ToBoolean(listik[2].value);
+                                rbStr4.IsChecked = Convert.ToBoolean(listik[3].value);
+                                rbStr5.IsChecked = Convert.ToBoolean(listik[4].value);
+                                break;
+                        }
+                        break;
+                    case 2:
+                        cbTypeQuestion.SelectedIndex = typeVoprId - 1;
+                       
+                        grLotQuestion.Visibility = Visibility.Visible;
+                        
+                        switch (listcount)
+                        {
+                            case 1:
+                                chbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
+                                break;
+                            case 2:
+                                chbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
+                                chbStr2.IsChecked = Convert.ToBoolean(listik[1].value);
+                                break;
+                            case 3:
+                                chbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
+                                chbStr2.IsChecked = Convert.ToBoolean(listik[1].value);
+                                chbStr3.IsChecked = Convert.ToBoolean(listik[2].value);
+                                break;
+                            case 4:
+                                chbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
+                                chbStr2.IsChecked = Convert.ToBoolean(listik[1].value);
+                                chbStr3.IsChecked = Convert.ToBoolean(listik[2].value);
+                                chbStr4.IsChecked = Convert.ToBoolean(listik[3].value);
+                                break;
+                            case 5:
+                                chbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
+                                chbStr2.IsChecked = Convert.ToBoolean(listik[1].value);
+                                chbStr3.IsChecked = Convert.ToBoolean(listik[2].value);
+                                chbStr4.IsChecked = Convert.ToBoolean(listik[3].value);
+                                chbStr5.IsChecked = Convert.ToBoolean(listik[4].value);
+                                break;
+                        }
+                        break;
+                    case 3:
+                        tbstrsootv();
+                        break;
+                    case 4:
+                        cbTypeQuestion.SelectedIndex = typeVoprId - 1;
+                        gridSledovanie.Visibility = Visibility.Visible;
+                        break;
+                    case 5:
+                        tbstrsootv();
+                        break;
+                        
                 }
-                else if (outjs.questions[dgView.SelectedIndex].typeQuestion == 1)
-                {
-                    switchwithlist();
-                    grLotQuestion.Visibility = Visibility.Visible;
-                    switch (listcount)
-                    {
-                        case 1:
-                            rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
-                            break;
-                        case 2:
-                            rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
-                            rbStr2.IsChecked = Convert.ToBoolean(listik[1].value);
-                            break;
-                        case 3:
-                            rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
-                            rbStr2.IsChecked = Convert.ToBoolean(listik[1].value);
-                            rbStr3.IsChecked = Convert.ToBoolean(listik[2].value);
-                            break;
-                        case 4:
-                            rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
-                            rbStr2.IsChecked = Convert.ToBoolean(listik[1].value);
-                            rbStr3.IsChecked = Convert.ToBoolean(listik[2].value);
-                            rbStr4.IsChecked = Convert.ToBoolean(listik[3].value);
-                            break;
-                        case 5:
-                            rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
-                            rbStr2.IsChecked = Convert.ToBoolean(listik[1].value);
-                            rbStr3.IsChecked = Convert.ToBoolean(listik[2].value);
-                            rbStr4.IsChecked = Convert.ToBoolean(listik[3].value);
-                            rbStr5.IsChecked = Convert.ToBoolean(listik[4].value);
-                            break;
-                    }
-                }
-                else if (outjs.questions[dgView.SelectedIndex].typeQuestion == 2)
-                {
-                    switchwithlist();
-                    gridSootv.Visibility = Visibility.Visible;
-                    switch (listcount)
-                    {
-                        case 1:
-                            rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
-                            break;
-                        case 2:
-                            rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
-                            rbStr2.IsChecked = Convert.ToBoolean(listik[1].value);
-                            break;
-                        case 3:
-                            rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
-                            rbStr2.IsChecked = Convert.ToBoolean(listik[1].value);
-                            rbStr3.IsChecked = Convert.ToBoolean(listik[2].value);
-                            break;
-                        case 4:
-                            rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
-                            rbStr2.IsChecked = Convert.ToBoolean(listik[1].value);
-                            rbStr3.IsChecked = Convert.ToBoolean(listik[2].value);
-                            rbStr4.IsChecked = Convert.ToBoolean(listik[3].value);
-                            break;
-                        case 5:
-                            rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
-                            rbStr2.IsChecked = Convert.ToBoolean(listik[1].value);
-                            rbStr3.IsChecked = Convert.ToBoolean(listik[2].value);
-                            rbStr4.IsChecked = Convert.ToBoolean(listik[3].value);
-                            rbStr5.IsChecked = Convert.ToBoolean(listik[4].value);
-                            break;
-                    }
-                }
-                else if (outjs.questions[dgView.SelectedIndex].typeQuestion == 3)
-                {
-                    switch (listcount)
-                    {
-                        case 1:
-                            rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
-                            break;
-                        case 2:
-                            rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
-                            rbStr2.IsChecked = Convert.ToBoolean(listik[1].value);
-                            break;
-                        case 3:
-                            rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
-                            rbStr2.IsChecked = Convert.ToBoolean(listik[1].value);
-                            rbStr3.IsChecked = Convert.ToBoolean(listik[2].value);
-                            break;
-                        case 4:
-                            rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
-                            rbStr2.IsChecked = Convert.ToBoolean(listik[1].value);
-                            rbStr3.IsChecked = Convert.ToBoolean(listik[2].value);
-                            rbStr4.IsChecked = Convert.ToBoolean(listik[3].value);
-                            break;
-                        case 5:
-                            rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
-                            rbStr2.IsChecked = Convert.ToBoolean(listik[1].value);
-                            rbStr3.IsChecked = Convert.ToBoolean(listik[2].value);
-                            rbStr4.IsChecked = Convert.ToBoolean(listik[3].value);
-                            rbStr5.IsChecked = Convert.ToBoolean(listik[4].value);
-                            break;
-                    }
-                }
-                else if (outjs.questions[dgView.SelectedIndex].typeQuestion == 4)
-                {
-                    switch (listcount)
-                    {
-                        case 1:
-                            rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
-                            break;
-                        case 2:
-                            rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
-                            rbStr2.IsChecked = Convert.ToBoolean(listik[1].value);
-                            break;
-                        case 3:
-                            rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
-                            rbStr2.IsChecked = Convert.ToBoolean(listik[1].value);
-                            rbStr3.IsChecked = Convert.ToBoolean(listik[2].value);
-                            break;
-                        case 4:
-                            rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
-                            rbStr2.IsChecked = Convert.ToBoolean(listik[1].value);
-                            rbStr3.IsChecked = Convert.ToBoolean(listik[2].value);
-                            rbStr4.IsChecked = Convert.ToBoolean(listik[3].value);
-                            break;
-                        case 5:
-                            rbStr1.IsChecked = Convert.ToBoolean(listik[0].value);
-                            rbStr2.IsChecked = Convert.ToBoolean(listik[1].value);
-                            rbStr3.IsChecked = Convert.ToBoolean(listik[2].value);
-                            rbStr4.IsChecked = Convert.ToBoolean(listik[3].value);
-                            rbStr5.IsChecked = Convert.ToBoolean(listik[4].value);
-                            break;
-                    }
-                }
-
-                cbTypeQuestion.SelectedIndex = outjs.questions[dgView.SelectedIndex].typeQuestion - 1;            }
+            }
             catch
             {
-
+                MessageBox.Show("Something error", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
+        public void tbstrsootv()
+        {
+            Test outjs = JsonConvert.DeserializeObject<Test>(js);
+            var listik = outjs.questions[dgView.SelectedIndex].optionQuestions.ToList();
+            int listcount = listik.Count();
+            int typeVoprId = outjs.questions[dgView.SelectedIndex].typeQuestion;
+            cbTypeQuestion.SelectedIndex = typeVoprId - 1;
+            gridSootv.Visibility = Visibility.Visible;
+            switch (listcount)
+            {
+                case 1:
+                    tbStrSootv1.Text = listik[0].value.ToString();
+                    break;
+                case 2:
+                    tbStrSootv1.Text = listik[0].value.ToString();
+                    tbStrSootv2.Text = listik[1].value.ToString();
+                    break;
+                case 3:
+                    tbStrSootv1.Text = listik[0].value.ToString();
+                    tbStrSootv2.Text = listik[1].value.ToString();
+                    tbStrSootv3.Text = listik[2].value.ToString();
+                    break;
+                case 4:
+                    tbStrSootv1.Text = listik[0].value.ToString();
+                    tbStrSootv2.Text = listik[1].value.ToString();
+                    tbStrSootv3.Text = listik[2].value.ToString();
+                    tbStrSootv4.Text = listik[3].value.ToString();
+                    break;
+                case 5:
+                    tbStrSootv1.Text = listik[0].value.ToString();
+                    tbStrSootv2.Text = listik[1].value.ToString();
+                    tbStrSootv3.Text = listik[2].value.ToString();
+                    tbStrSootv4.Text = listik[3].value.ToString();
+                    tbStrSootv5.Text = listik[4].value.ToString();
+                    break;
+            }
+        }
         private void tbnameTest_TextChanged(object sender, TextChangedEventArgs e)
         {
             
@@ -745,6 +460,75 @@ namespace CreaterTest
         private void cbTimeLimit_Unchecked(object sender, RoutedEventArgs e)
         {
             tbTimeLimit.Visibility = Visibility.Hidden;
+        }
+
+        public void ChangeValList(TextBox text)
+        {
+            if (text.Text != "") tbFormulirovka.Text = "Work"; 
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeValList(tbConstStr1);
+        }
+
+        private void BtnSave_Click(object sender, RoutedEventArgs e)
+        {
+            // Добавление в тест + настройки теста
+            string timelimits;
+            if (cbTimeLimit.IsChecked == true)
+                timelimits = cbTimeLimit.IsChecked.ToString();
+            else timelimits = "0";
+
+            //object qlistinput = new
+            //{
+            //    questions = qlists
+            //};
+
+            testsq.Add(new TestList()
+            {
+                testsq = testsqq
+            });
+
+            object testinput = new
+            {
+                idTest = idTestik++,
+                name = tbnameTest.Text,
+                randomOrderTest = cbRandomQuestion.IsChecked.Value,
+                randomOrderQuest = cbRandomQuestion.IsChecked.Value,
+                timeLimit = timelimits,
+                questions = qlists
+            };
+
+
+            ///<summary>
+            ///Логика подключения и передачи данных на сокет
+            /// </summary>
+
+            //Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            //socket.Connect("95.182.122.115", 25565);
+            //string writeInstruction = "writeToNewTest";
+            //byte [] sockWrite = Encoding.UTF8.GetBytes(ss);
+            //byte[] jsString = Encoding.UTF8.GetBytes(outjs);
+            //socket.Send(b);
+            //socket.Send(q);
+            //socket.Close();
+
+
+            ///<summary>
+            ///Временная логика записи строки в Json
+            /// </summary>
+
+            using (StreamWriter writer = File.CreateText(@"C:\Users\User\Desktop\q\qqq.json"))
+            {
+                string outjs = JsonConvert.SerializeObject(testinput);
+                writer.Write(outjs);
+            }
+
+            MessageBox.Show("Тест был успешно добавлен", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
+            MainWindow mw = new MainWindow();
+            mw.Show();
+            this.Close();
         }
     }
 }

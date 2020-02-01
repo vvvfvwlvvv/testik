@@ -70,6 +70,7 @@
     <Compile Include="Question.cs" />
     <Compile Include="Test.cs" />
     <Compile Include="TestList.cs" />
+    <Compile Include="WorkWithForm.cs" />
     <Page Include="AddRedTest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
