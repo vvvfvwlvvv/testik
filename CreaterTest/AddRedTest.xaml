@@ -199,5 +199,6 @@
                 <TextBox FontSize="18"  TextWrapping="Wrap" AcceptsReturn="True" x:Name="tbConstStr6" VerticalContentAlignment="Bottom"></TextBox>
             </ScrollViewer>
         </Grid>
+        <Button Content="Button" Grid.Column="2" HorizontalAlignment="Left" Margin="23,13,0,0" Grid.Row="6" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.4,-0.312" Click="Button_Click_2"/>
     </Grid>
 </Window>

@@ -34,11 +34,31 @@ namespace CreaterTest
         public int indexTMP;
         int index = 0;
         public List<OptionQuestions> anwsers = new List<OptionQuestions>();
-        string js = File.ReadAllText(@"C:\Users\User\Desktop\q\qqq.json");
+        string js = File.ReadAllText(@"C:\Users\vlado\Desktop\q\qqq.json");
         public object JsonSerializer { get; private set; }
+        int typeVopr = 0;
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            switch (cbTypeQuestion.SelectedItem.ToString())
+            {
+                case "Один вариант":
+                    typeVopr = 1;
+                    break;
+                case "Несколько вариантов":
+                    typeVopr = 2;
+                    break;
+                case "Соответствие":
+                    typeVopr = 3;
+                    break;
+                case "Последовательность":
+                    typeVopr = 5;
+                    break;
+                case "Закрытый вопрос":
+                    typeVopr = 4;
+                    break;
+            }
+
             if (cbTypeQuestion.SelectedItem.ToString() == "Соответствие")
             {
                 collapsedallpanel();
@@ -118,122 +138,167 @@ namespace CreaterTest
             ///<summary>
             ///Логика добавления вопросов
             /// </summary>
+           
             WorkWithForm wwf = new WorkWithForm();
-            if (cbTypeQuestion.SelectedItem.ToString() == "Последовательность")
+            if (move == "Редактирование")
             {
-                wwf.checkConstStroka(tbConstStr1, tblStr1.Text);
-                wwf.checkConstStroka(tbConstStr2, tblStr2.Text);
-                wwf.checkConstStroka(tbConstStr3, tblStr3.Text);
-                wwf.checkConstStroka(tbConstStr4, tblStr4.Text);
-                wwf.checkConstStroka(tbConstStr5, tblStr5.Text);
-                wwf.checkConstStroka(tbConstStr6, tblStr6.Text);
+                //string result = "";
+                //wwf.che();
+                int idVoprosa = Convert.ToInt32((dgView.Columns[0].GetCellContent(dgView.SelectedItem) as TextBlock).Text);
+                if (cbTypeQuestion.SelectedItem.ToString() == "Последовательность")
+                {
+                    wwf.ZamenaZnach(tbConstStr1, tblStr1.Text, 0, idVoprosa, tbnameTest.Text, tbFormulirovka.Text, typeVopr);
+                    wwf.ZamenaZnach(tbConstStr2, tblStr2.Text, 1, idVoprosa, tbnameTest.Text, tbFormulirovka.Text, typeVopr);
+                    wwf.ZamenaZnach(tbConstStr3, tblStr3.Text, 2, idVoprosa, tbnameTest.Text, tbFormulirovka.Text, typeVopr);
+                    wwf.ZamenaZnach(tbConstStr4, tblStr4.Text, 3, idVoprosa, tbnameTest.Text, tbFormulirovka.Text, typeVopr);
+                    wwf.ZamenaZnach(tbConstStr5, tblStr5.Text, 4, idVoprosa, tbnameTest.Text, tbFormulirovka.Text, typeVopr);
+                    wwf.ZamenaZnach(tbConstStr6, tblStr6.Text, 5, idVoprosa, tbnameTest.Text, tbFormulirovka.Text, typeVopr);
+                }
+                else if (cbTypeQuestion.SelectedItem.ToString() == "Несколько вариантов")
+                {
+                    wwf.ZamenaZnach(tbConstStr1, chbStr1.IsChecked.ToString(), 0, idVoprosa, tbnameTest.Text, tbFormulirovka.Text, typeVopr);
+                    wwf.ZamenaZnach(tbConstStr2, chbStr2.IsChecked.ToString(), 1, idVoprosa, tbnameTest.Text, tbFormulirovka.Text, typeVopr);
+                    wwf.ZamenaZnach(tbConstStr3, chbStr3.IsChecked.ToString(), 2, idVoprosa, tbnameTest.Text, tbFormulirovka.Text, typeVopr);
+                    wwf.ZamenaZnach(tbConstStr4, chbStr4.IsChecked.ToString(), 3, idVoprosa, tbnameTest.Text, tbFormulirovka.Text, typeVopr);
+                    wwf.ZamenaZnach(tbConstStr5, chbStr5.IsChecked.ToString(), 4, idVoprosa, tbnameTest.Text, tbFormulirovka.Text, typeVopr);
+                    wwf.ZamenaZnach(tbConstStr6, chbStr6.IsChecked.ToString(), 5, idVoprosa, tbnameTest.Text, tbFormulirovka.Text, typeVopr);
+                }
+                else if (cbTypeQuestion.SelectedItem.ToString() == "Один вариант")
+                {
+                    wwf.ZamenaZnach(tbConstStr1, rbStr1.IsChecked.ToString(), 0, idVoprosa, tbnameTest.Text, tbFormulirovka.Text, typeVopr);
+                    wwf.ZamenaZnach(tbConstStr2, rbStr2.IsChecked.ToString(), 1, idVoprosa, tbnameTest.Text, tbFormulirovka.Text, typeVopr);
+                    wwf.ZamenaZnach(tbConstStr3, rbStr3.IsChecked.ToString(), 2, idVoprosa, tbnameTest.Text, tbFormulirovka.Text, typeVopr);
+                    wwf.ZamenaZnach(tbConstStr4, rbStr4.IsChecked.ToString(), 3, idVoprosa, tbnameTest.Text, tbFormulirovka.Text, typeVopr);
+                    wwf.ZamenaZnach(tbConstStr5, rbStr5.IsChecked.ToString(), 4, idVoprosa, tbnameTest.Text, tbFormulirovka.Text, typeVopr);
+                    wwf.ZamenaZnach(tbConstStr6, rbStr6.IsChecked.ToString(), 5, idVoprosa, tbnameTest.Text, tbFormulirovka.Text, typeVopr);
+                }
+                else if (cbTypeQuestion.SelectedItem.ToString() == "Закрытый вопрос" || cbTypeQuestion.SelectedItem.ToString() == "Соответствие")
+                {
+                    wwf.ZamenaZnach(tbConstStr1, tbStrSootv1.Text, 0, idVoprosa, tbnameTest.Text, tbFormulirovka.Text, typeVopr);
+                    wwf.ZamenaZnach(tbConstStr2, tbStrSootv2.Text, 1, idVoprosa, tbnameTest.Text, tbFormulirovka.Text, typeVopr);
+                    wwf.ZamenaZnach(tbConstStr3, tbStrSootv3.Text, 2, idVoprosa, tbnameTest.Text, tbFormulirovka.Text, typeVopr);
+                    wwf.ZamenaZnach(tbConstStr4, tbStrSootv4.Text, 3, idVoprosa, tbnameTest.Text, tbFormulirovka.Text, typeVopr);
+                    wwf.ZamenaZnach(tbConstStr5, tbStrSootv5.Text, 4, idVoprosa, tbnameTest.Text, tbFormulirovka.Text, typeVopr);
+                    wwf.ZamenaZnach(tbConstStr6, tbStrSootv6.Text, 5, idVoprosa, tbnameTest.Text, tbFormulirovka.Text, typeVopr);
+                }
+                wwf.Obnova(dgView);
+                
             }
-            else if (cbTypeQuestion.SelectedItem.ToString() == "Несколько вариантов")
+            else
             {
-                wwf.checkConstStroka(tbConstStr1, chbStr1.IsChecked.ToString());
-                wwf.checkConstStroka(tbConstStr2, chbStr2.IsChecked.ToString());
-                wwf.checkConstStroka(tbConstStr3, chbStr3.IsChecked.ToString());
-                wwf.checkConstStroka(tbConstStr4, chbStr4.IsChecked.ToString());
-                wwf.checkConstStroka(tbConstStr5, chbStr5.IsChecked.ToString());
-                wwf.checkConstStroka(tbConstStr6, chbStr6.IsChecked.ToString());
-            }
-            else if (cbTypeQuestion.SelectedItem.ToString() == "Один вариант")
-            {
-                wwf.checkConstStroka(tbConstStr1, rbStr1.IsChecked.ToString());
-                wwf.checkConstStroka(tbConstStr2, rbStr2.IsChecked.ToString());
-                wwf.checkConstStroka(tbConstStr3, rbStr3.IsChecked.ToString());
-                wwf.checkConstStroka(tbConstStr4, rbStr4.IsChecked.ToString());
-                wwf.checkConstStroka(tbConstStr5, rbStr5.IsChecked.ToString());
-                wwf.checkConstStroka(tbConstStr6, rbStr6.IsChecked.ToString());
-            }
-            else if (cbTypeQuestion.SelectedItem.ToString() == "Закрытый вопрос" || cbTypeQuestion.SelectedItem.ToString() == "Соответствие")
-            {
-                wwf.checkConstStroka(tbConstStr1, tbStrSootv1.Text);
-                wwf.checkConstStroka(tbConstStr2, tbStrSootv2.Text);
-                wwf.checkConstStroka(tbConstStr3, tbStrSootv3.Text);
-                wwf.checkConstStroka(tbConstStr4, tbStrSootv4.Text);
-                wwf.checkConstStroka(tbConstStr5, tbStrSootv5.Text);
-                wwf.checkConstStroka(tbConstStr6, tbStrSootv6.Text);
-            }
+               // WorkWithForm wwf = new WorkWithForm();
+                if (cbTypeQuestion.SelectedItem.ToString() == "Последовательность")
+                {
+                    wwf.checkConstStroka(tbConstStr1, tblStr1.Text);
+                    wwf.checkConstStroka(tbConstStr2, tblStr2.Text);
+                    wwf.checkConstStroka(tbConstStr3, tblStr3.Text);
+                    wwf.checkConstStroka(tbConstStr4, tblStr4.Text);
+                    wwf.checkConstStroka(tbConstStr5, tblStr5.Text);
+                    wwf.checkConstStroka(tbConstStr6, tblStr6.Text);
+                }
+                else if (cbTypeQuestion.SelectedItem.ToString() == "Несколько вариантов")
+                {
+                    wwf.checkConstStroka(tbConstStr1, chbStr1.IsChecked.ToString());
+                    wwf.checkConstStroka(tbConstStr2, chbStr2.IsChecked.ToString());
+                    wwf.checkConstStroka(tbConstStr3, chbStr3.IsChecked.ToString());
+                    wwf.checkConstStroka(tbConstStr4, chbStr4.IsChecked.ToString());
+                    wwf.checkConstStroka(tbConstStr5, chbStr5.IsChecked.ToString());
+                    wwf.checkConstStroka(tbConstStr6, chbStr6.IsChecked.ToString());
+                }
+                else if (cbTypeQuestion.SelectedItem.ToString() == "Один вариант")
+                {
+                    wwf.checkConstStroka(tbConstStr1, rbStr1.IsChecked.ToString());
+                    wwf.checkConstStroka(tbConstStr2, rbStr2.IsChecked.ToString());
+                    wwf.checkConstStroka(tbConstStr3, rbStr3.IsChecked.ToString());
+                    wwf.checkConstStroka(tbConstStr4, rbStr4.IsChecked.ToString());
+                    wwf.checkConstStroka(tbConstStr5, rbStr5.IsChecked.ToString());
+                    wwf.checkConstStroka(tbConstStr6, rbStr6.IsChecked.ToString());
+                }
+                else if (cbTypeQuestion.SelectedItem.ToString() == "Закрытый вопрос" || cbTypeQuestion.SelectedItem.ToString() == "Соответствие")
+                {
+                    wwf.checkConstStroka(tbConstStr1, tbStrSootv1.Text);
+                    wwf.checkConstStroka(tbConstStr2, tbStrSootv2.Text);
+                    wwf.checkConstStroka(tbConstStr3, tbStrSootv3.Text);
+                    wwf.checkConstStroka(tbConstStr4, tbStrSootv4.Text);
+                    wwf.checkConstStroka(tbConstStr5, tbStrSootv5.Text);
+                    wwf.checkConstStroka(tbConstStr6, tbStrSootv6.Text);
+                }
 
-            int typeVopr = 0;
-            switch(cbTypeQuestion.SelectedItem.ToString())
-            {
-                case "Один вариант":
-                    typeVopr = 1;
-                    break;
-                case "Несколько вариантов":
-                    typeVopr = 2;
-                    break;
-                case "Соответствие":
-                    typeVopr = 3;
-                    break;
-                case "Последовательность":
-                    typeVopr = 5;
-                    break;
-                case "Закрытый вопрос":
-                    typeVopr = 4;
-                    break;
+
+                qlists.Add(new Question()
+                {
+                    idQuestion = idQuestion++,
+                    quest = tbFormulirovka.Text,
+                    typeQuestion = typeVopr,
+                    optionQuestions = wwf.es
+                });
+
+
+                index = 0;
+                dgView.ItemsSource = qlists.Select(spisokVoprosov => new { k = index++, spisokVoprosov.quest }).ToList();
+
+                //Подчищаем строки
+                tbFormulirovka.Text = "Введите формулировку вопроса";
+                tbConstStr1.Clear();
+                tbConstStr2.Clear();
+                tbConstStr3.Clear();
+                tbConstStr4.Clear();
+                tbConstStr5.Clear();
+                tbConstStr6.Clear();
             }
-
-            qlists.Add(new Question()
-            {
-                idQuestion = idQuestion++,
-                quest = tbFormulirovka.Text,
-                typeQuestion = typeVopr,
-                optionQuestions = wwf.es
-            });
-            
-
-            index = 0;
-            dgView.ItemsSource = qlists.Select(spisokVoprosov =>new {k=index++, spisokVoprosov.quest }).ToList();
-
-            //Подчищаем строки
-            tbFormulirovka.Clear();
-            tbConstStr1.Clear();
-            tbConstStr2.Clear();
-            tbConstStr3.Clear();
-            tbConstStr4.Clear();
-            tbConstStr5.Clear();
-            tbConstStr6.Clear();
         }
 
         
 
         public void switchwithlist()
         {
-            
-                Test outjs = JsonConvert.DeserializeObject<Test>(js);
-                //tbFormulirovka.Text = outjs.questions[dgView.SelectedIndex].quest;
+            string jss = File.ReadAllText(@"C:\Users\vlado\Desktop\q\qqq.json");
+            Test outjs = JsonConvert.DeserializeObject<Test>(jss);
+            //tbFormulirovka.Text = outjs.questions[dgView.SelectedIndex].quest;
+            try
+            {
                 var listik = outjs.questions[dgView.SelectedIndex].optionQuestions.ToList();
                 int listcount = listik.Count();
-            switch (listcount)
+                switch (listcount)
+                {
+                    case 1:
+                        tbConstStr1.Text = listik[0].option;
+                        break;
+                    case 2:
+                        tbConstStr1.Text = listik[0].option;
+                        tbConstStr2.Text = listik[1].option;
+                        break;
+                    case 3:
+                        tbConstStr1.Text = listik[0].option;
+                        tbConstStr2.Text = listik[1].option;
+                        tbConstStr3.Text = listik[2].option;
+                        break;
+                    case 4:
+                        tbConstStr1.Text = listik[0].option;
+                        tbConstStr2.Text = listik[1].option;
+                        tbConstStr3.Text = listik[2].option;
+                        tbConstStr4.Text = listik[3].option;
+                        break;
+                    case 5:
+                        tbConstStr1.Text = listik[0].option;
+                        tbConstStr2.Text = listik[1].option;
+                        tbConstStr3.Text = listik[2].option;
+                        tbConstStr4.Text = listik[3].option;
+                        tbConstStr5.Text = listik[4].option;
+                        break;
+                    case 6:
+                        tbConstStr1.Text = listik[0].option;
+                        tbConstStr2.Text = listik[1].option;
+                        tbConstStr3.Text = listik[2].option;
+                        tbConstStr4.Text = listik[3].option;
+                        tbConstStr5.Text = listik[4].option;
+                        tbConstStr6.Text = listik[5].option;
+                        break;
+                }
+            }
+            catch
             {
-                case 1:
-                    tbConstStr1.Text = listik[0].option;
-                    break;
-                case 2:
-                    tbConstStr1.Text = listik[0].option;
-                    tbConstStr2.Text = listik[1].option;
-                    break;
-                case 3:
-                    tbConstStr1.Text = listik[0].option;
-                    tbConstStr2.Text = listik[1].option;
-                    tbConstStr3.Text = listik[2].option;
-                    break;
-                case 4:
-                    tbConstStr1.Text = listik[0].option;
-                    tbConstStr2.Text = listik[1].option;
-                    tbConstStr3.Text = listik[2].option;
-                    tbConstStr4.Text = listik[3].option;
-                    break;
-                case 5:
-                    tbConstStr1.Text = listik[0].option;
-                    tbConstStr2.Text = listik[1].option;
-                    tbConstStr3.Text = listik[2].option;
-                    tbConstStr4.Text = listik[3].option;
-                    tbConstStr5.Text = listik[4].option;
-                    break;
+
             }
 
         }
@@ -243,7 +308,8 @@ namespace CreaterTest
             collapsedallpanel();
             try
             {
-                Test outjs = JsonConvert.DeserializeObject<Test>(js);
+                string jss = File.ReadAllText(@"C:\Users\vlado\Desktop\q\qqq.json");
+                Test outjs = JsonConvert.DeserializeObject<Test>(jss);
                 tbFormulirovka.Text = outjs.questions[dgView.SelectedIndex].quest;
                 var listik = outjs.questions[dgView.SelectedIndex].optionQuestions.ToList();
                 int listcount = listik.Count();
@@ -321,11 +387,12 @@ namespace CreaterTest
                     case 3:
                         tbstrsootv();
                         break;
-                    case 4:
-                        cbTypeQuestion.SelectedIndex = typeVoprId - 1;
+                    case 5:
+                        
+                        cbTypeQuestion.SelectedIndex = typeVoprId - 2;
                         gridSledovanie.Visibility = Visibility.Visible;
                         break;
-                    case 5:
+                    case 4:
                         tbstrsootv();
                         break;
                         
@@ -485,10 +552,10 @@ namespace CreaterTest
             //    questions = qlists
             //};
 
-            testsq.Add(new TestList()
-            {
-                testsq = testsqq
-            });
+            //testsq.Add(new TestList()
+            //{
+            //    testsq = testsqq
+            //});
 
             object testinput = new
             {
@@ -519,7 +586,7 @@ namespace CreaterTest
             ///Временная логика записи строки в Json
             /// </summary>
 
-            using (StreamWriter writer = File.CreateText(@"C:\Users\User\Desktop\q\qqq.json"))
+            using (StreamWriter writer = File.CreateText(@"C:\Users\vlado\Desktop\q\qqq.json"))
             {
                 string outjs = JsonConvert.SerializeObject(testinput);
                 writer.Write(outjs);
@@ -529,6 +596,12 @@ namespace CreaterTest
             MainWindow mw = new MainWindow();
             mw.Show();
             this.Close();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            WorkWithForm wwf = new WorkWithForm();
+            wwf.RemoveQuestion(Convert.ToInt32((dgView.Columns[0].GetCellContent(dgView.SelectedItem) as TextBlock).Text));
         }
     }
 }
